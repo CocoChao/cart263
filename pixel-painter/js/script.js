@@ -4,6 +4,7 @@
 
 Pixel painter
 Pippin Barr
+Modified by : Carole Chao
 
 A small DOM-based program for "painting" on div-based pixels.
 
@@ -45,16 +46,16 @@ function paint(e) {
   // save that into a variable for clarity.
   let pixel = e.target;
   // Change the background color of the element to white
-  pixel.style.backgroundColor = PAINT_COLOR;
+  pixel.style.backgroundColor = 'white';
   // Set a timeout to call the reset function after a delay
   // When we pass additional parameters (like 'pixel' below) they
   // are passed to the callback function (resetPixel)
-  setTimeout(resetPixel, PIXEL_REVERT_DELAY, pixel);
+  setTimeout(resetPixel, 2000, pixel);
 }
 
 // resetPixel
 //
 // Takes the provided pixel element and sets its color back to default
 function resetPixel(pixel) {
-  pixel.style.backgroundColor = DEFAULT_COLOR;
+  pixel.style.backgroundColor = 'black';
 }
