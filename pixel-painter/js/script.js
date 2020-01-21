@@ -30,10 +30,11 @@ function setup() {
     let pixel = document.createElement('div');
     pixel.setAttribute('class', 'pixel');
     pixel.addEventListener('mouseover', paint);
+    //pixel.addEventListener('')
     document.body.appendChild(pixel);
-    // div.parentElement.removeChild('div');// Removing the element (the pixel in this case)
   }
 }
+
 
 // paint
 //
@@ -59,4 +60,16 @@ function paint(e) {
 // Takes the provided pixel element and sets its color back to default
 function resetPixel(pixel) {
   pixel.style.backgroundColor = 'black';
+}
+
+document.addEventListener('keydown', rotatePixels);
+// Make all the pixels rotate by 1 degree clockwise when right arrow key is pressed (39)
+// Make all the pixels rotate by 1 degree counter-clockwise when the left arrow key is pressed (37)
+function rotatePixels(){
+  if (e.keyCode === 39) { // Right arrow key is pressed
+    let
+  }
+  else (e.keyCode === 37) { //Left arrow key is pressed
+    let
+  }
 }
