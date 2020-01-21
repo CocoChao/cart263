@@ -30,7 +30,7 @@ function setup() {
     let pixel = document.createElement('div');
     pixel.setAttribute('class', 'pixel');
     pixel.addEventListener('mouseover', paint);
-    //pixel.addEventListener('')
+    //pixel.addEventListener('click', remove);
     document.body.appendChild(pixel);
   }
 }
@@ -55,6 +55,15 @@ function paint(e) {
   setTimeout(resetPixel, 3000, pixel);
 }
 
+// // Remove
+// //
+// // Called by the click event handler on each pixel. Removes the target pixel
+// // from the screen (to create a hole)
+// function remove(e){
+//
+// }
+
+
 // resetPixel
 //
 // Takes the provided pixel element and sets its color back to default
@@ -63,13 +72,22 @@ function resetPixel(pixel) {
 }
 
 document.addEventListener('keydown', rotatePixels);
-// Make all the pixels rotate by 1 degree clockwise when right arrow key is pressed (39)
-// Make all the pixels rotate by 1 degree counter-clockwise when the left arrow key is pressed (37)
-function rotatePixels(){
+// rotatePixels
+//
+// Make all the pixels rotate by 1 degree clockwise when right arrow key is pressed
+// Make all the pixels rotate by 1 degree counter-clockwise when the left arrow key is pressed
+function rotatePixels(e){
+  let pixels = document.getElementsByClassName("pixel");
   if (e.keyCode === 39) { // Right arrow key is pressed
-    let
+    for (let i = 0; i < 1000; i++) {
+    rotation += 1; // rotate 1 degree clockwise
+    pixel.style.transform = `rotate(${rotation}deg)`
   }
-  else (e.keyCode === 37) { //Left arrow key is pressed
-    let
+}
+  else if (e.keyCode === 37) { //Left arrow key is pressed
+    for (let i = 0; i < 1000; i++) {
+    rotation -= 1; // rotate 1 degree counter-clockwise
+    pixel.style.transform = `rotate(${rotation}deg)`
   }
+}
 }
