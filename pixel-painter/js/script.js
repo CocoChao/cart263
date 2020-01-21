@@ -38,8 +38,13 @@ function setup() {
 // Called by the mouseover event handler on each pixel. Changes
 // the pixel's color and sets a timer for it to revert
 function paint(e) {
+  // e.target links variable pixel to addEventListener
   let pixel = e.target;
-  pixel.style.backgroundColor = 'white';
+  // Get a number between 0 and 1 to paint a pixel in a random RGB color
+  let r = Math.random() * 255;
+  let g = Math.random() * 255;
+  let b = Math.random() * 255;
+  pixel.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
   // The colored pixel will turn to black after 2000 milliseconds
   setTimeout(resetPixel, 2000, pixel);
 }
@@ -49,20 +54,4 @@ function paint(e) {
 // Takes the provided pixel element and sets its color back to default
 function resetPixel(pixel) {
   pixel.style.backgroundColor = 'black';
-}
-
-function randomColor(){
-  let r = Math.random();
-  if (r < 0.4){
-    // pixel.style.backgroundColor = RGB(235, 52, 122);
-    console.log("I'm happy!");
-  }
-  else if (r < 0.7){
-    // pixel.style.backgroundColor = RGB(84, 165, 222);
-    console.log("I'm sad!");
-  }
-  else {
-    // pixel.style.backgroundColor = RGB(97, 247, 89);
-    console.log("I'm mad!");
-  }
 }
