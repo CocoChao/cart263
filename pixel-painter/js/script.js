@@ -10,11 +10,12 @@ A small DOM-based program for "painting" on div-based pixels.
 
 *********************************************************************/
 
-// // Constants
-// const NUM_PIXELS = 1000;
-// const PIXEL_REVERT_DELAY = 1000;
-// const DEFAULT_COLOR = 'black';
-// const PAINT_COLOR = 'white';
+// Constants
+const NUM_PIXELS = 1000;
+const PIXEL_REVERT_DELAY = 1000;
+const DEFAULT_COLOR = 'black';
+const PAINT_COLOR = 'white';
+let rotation = 0;
 
 // Set up our starting function for when the page loads
 window.onload = setup;
@@ -30,6 +31,7 @@ function setup() {
     pixel.setAttribute('class', 'pixel');
     pixel.addEventListener('mouseover', paint);
     document.body.appendChild(pixel);
+    // div.parentElement.removeChild('div');// Removing the element (the pixel in this case)
   }
 }
 
@@ -41,12 +43,15 @@ function paint(e) {
   // e.target links variable pixel to addEventListener
   let pixel = e.target;
   // Get a number between 0 and 1 to paint a pixel in a random RGB color
+//Code source: https://stackoverflow.com/questions/1484506/random-color-generator
   let r = Math.random() * 255;
   let g = Math.random() * 255;
   let b = Math.random() * 255;
   pixel.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
-  // The colored pixel will turn to black after 2000 milliseconds
-  setTimeout(resetPixel, 2000, pixel);
+// That site made me understand better the use of Math.random() and how to
+// make random colored pixels
+  // The colored pixel will turn to black after 3000 milliseconds
+  setTimeout(resetPixel, 3000, pixel);
 }
 
 // resetPixel
