@@ -33,6 +33,7 @@ function setup() {
     //pixel.addEventListener('click', remove);
     document.body.appendChild(pixel);
   }
+  document.addEventListener('keydown', rotatePixels);
 }
 
 
@@ -71,7 +72,6 @@ function resetPixel(pixel) {
   pixel.style.backgroundColor = 'black';
 }
 
-document.addEventListener('keydown', rotatePixels);
 // rotatePixels
 //
 // Make all the pixels rotate by 1 degree clockwise when right arrow key is pressed
@@ -79,15 +79,15 @@ document.addEventListener('keydown', rotatePixels);
 function rotatePixels(e){
   let pixels = document.getElementsByClassName("pixel");
   if (e.keyCode === 39) { // Right arrow key is pressed
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < pixels.length; i++) {
     rotation += 1; // rotate 1 degree clockwise
-    pixel.style.transform = `rotate(${rotation}deg)`
+    pixels[i].style.transform = `rotate(${rotation}deg)`;
   }
 }
   else if (e.keyCode === 37) { //Left arrow key is pressed
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < pixels.length; i++) {
     rotation -= 1; // rotate 1 degree counter-clockwise
-    pixel.style.transform = `rotate(${rotation}deg)`
+    pixels[i].style.transform = `rotate(${rotation}deg)`;
   }
 }
 }
