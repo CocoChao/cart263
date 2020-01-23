@@ -30,10 +30,10 @@ function setup() {
     let pixel = document.createElement('div');
     pixel.setAttribute('class', 'pixel');
     pixel.addEventListener('mouseover', paint);
-    //pixel.addEventListener('click', remove);
     document.body.appendChild(pixel);
   }
   document.addEventListener('keydown', rotatePixels);
+  document.addEventListener('click', remove);
 }
 
 
@@ -55,14 +55,6 @@ function paint(e) {
   // The colored pixel will turn to black after 3000 milliseconds
   setTimeout(resetPixel, 3000, pixel);
 }
-
-// // Remove
-// //
-// // Called by the click event handler on each pixel. Removes the target pixel
-// // from the screen (to create a hole)
-// function remove(e){
-//
-// }
 
 
 // resetPixel
@@ -90,4 +82,14 @@ function rotatePixels(e){
     pixels[i].style.transform = `rotate(${rotation}deg)`;
   }
 }
+}
+
+// Remove
+//
+// Called by the click event handler on each pixel. Removes the target pixel
+// from the screen (to create a hole) and turns black after 2000 milliseconds.
+function remove(e){
+  // e.target links variable pixel to addEventListener
+  let pixel = e.target;
+  pixel.style.backgroundColor = 'white';
 }
