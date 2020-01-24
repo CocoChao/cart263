@@ -16,6 +16,7 @@ const PIXEL_REVERT_DELAY = 1000;
 const DEFAULT_COLOR = 'black';
 const PAINT_COLOR = 'white';
 let rotation = 0;
+let currentKey = ;
 
 // Set up our starting function for when the page loads
 window.onload = setup;
@@ -27,13 +28,18 @@ window.onload = setup;
 function setup() {
   // A loop that runs once per pixel we need
   for (let i = 0; i < 2000; i++) {
+    // Create a DIV and store it in a variable
     let pixel = document.createElement('div');
+    // Add the 'pixel' class to the new element
     pixel.setAttribute('class', 'pixel');
+    // Add a mouseover handler to the new element
     pixel.addEventListener('mouseover', paint);
+    // Add the element to the body of the page    
     document.body.appendChild(pixel);
   }
   document.addEventListener('keydown', rotatePixels);
   document.addEventListener('click', remove);
+  document.addEventListener('keydown', typed);
 }
 
 
@@ -87,7 +93,7 @@ function rotatePixels(e){
 // Remove
 //
 // Called by the click event handler on each pixel. Removes the target pixel
-// from the screen (to create a hole) and turns black after 2000 milliseconds.
+// from the screen and turns black after 2000 milliseconds.
 function remove(e){
   // e.target links variable pixel to addEventListener
   let pixel = e.target;
