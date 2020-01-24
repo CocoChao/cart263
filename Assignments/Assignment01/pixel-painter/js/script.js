@@ -34,11 +34,14 @@ function setup() {
     pixel.setAttribute('class', 'pixel');
     // Add a mouseover handler to the new element
     pixel.addEventListener('mouseover', paint);
-    // Add the element to the body of the page    
+    // Add the element to the body of the page
     document.body.appendChild(pixel);
   }
+  // Add a keydown handler to the document
   document.addEventListener('keydown', rotatePixels);
+  // Add a click handler to the document
   document.addEventListener('click', remove);
+  // Add another keydown handler to the document
   document.addEventListener('keydown', typed);
 }
 
