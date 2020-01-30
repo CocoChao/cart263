@@ -19,6 +19,11 @@ const UPDATE_FREQUENCY = 500;
 // A place to store the jQuery selection of all spans
 let $spans;
 
+// A variable to track the number of secret found
+let secretsFound;
+// A variable to track the number of total secrets
+let secretsTotatl;
+
 // When the document is loaded we call the setup function
 $(document).ready(setup);
 
