@@ -20,10 +20,11 @@ const UPDATE_FREQUENCY = 500;
 let $redacted;
 // A variable to track the number of secret found
 let $secretsFound;
+let $found = 0;
 // A variable to track the number of total secrets
 let $secretsTotatl;
 // A variable to track all the secrets
-let $secrets
+let $secrets = 0;
 
 // When the document is loaded we call the setup function
 $(document).ready(setup);
@@ -54,7 +55,7 @@ function highlight(e){
   // Removes the mouseover event from the found element.
   $(this).off("mouseover", highlight);
   //Increase the counter variable by one.
-  $secretsTotal -= 1;
+  $found += 1;
 }
 
 
@@ -76,7 +77,7 @@ function redactedClicked() {
 function update() {
   $redacted.each(updateSpan);
   // Show the total number of secrets on the last line of the text
-  $secretsTotalNumber.text($found);
+  $secrets.text($found);
 }
 
 // updateSpan()

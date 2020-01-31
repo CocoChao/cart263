@@ -26,12 +26,12 @@ body {
   color: red; /* Emergency! */
 }
 .found{
-  background-color: yellow;
+  background-color: pink;
   text-decoration-line: underline;
   color: black;
 }
 .total{
-  background-color: yellow;
+  background-color: pink;
   text-decoration-line: underline;
   color: black;
 }
