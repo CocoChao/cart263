@@ -4,6 +4,7 @@
 
 Raving Redactionist
 Pippin Barr
+Modified by : Carole Chao
 
 You are redacting a document, but it keeps becoming unredacted!
 Click the secret information to hide it, don't let all the
@@ -77,7 +78,7 @@ function redactedClicked() {
 function update() {
   $redacted.each(updateSpan);
   // Show the total number of secrets on the last line of the text
-  $secrets.text($found);
+  $(this).text($found);
 }
 
 // updateSpan()
@@ -92,24 +93,3 @@ function updateSpan() {
     $(this).addClass('revealed');
   }
 }
-
-// A version using anonymous functions if you're interested:
-
-// $(document).ready(function () {
-//   $spans = $('span');
-//
-//   $spans.on('click',function () {
-//     $(this).removeClass('revealed');
-//     $(this).addClass('redacted');
-//   });
-//
-//   setInterval(function () {
-//     $spans.each(function () {
-//       let r = Math.random();
-//       if (r < REVEAL_POSSIBILITY) {
-//         $(this).removeClass('redacted');
-//         $(this).addClass('revealed');
-//       }
-//     });
-//   },UPDATE_FREQUENCY);
-// });
