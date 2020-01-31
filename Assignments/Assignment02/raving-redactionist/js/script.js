@@ -39,16 +39,21 @@ function setup() {
   setInterval(update, UPDATE_FREQUENCY);
   // Track the number of total secrets
   $secretsTotal = $("secret").lenght;
-  // Add an event for "mouseover" to all the secrets
-  $('secrets').on('mouseover', disappear);
+  // Add an event for "mouseover" to highlight all the secrets
+  $('secrets').on('mouseover', highlight);
 };
 
 // disappear
 //
 // Called by the mouseover event handler to all the secrets.
-// Disappears once mouse is over a secret text.
-function disappear(e){
-  
+// Highlights the secret text once mouse is over.
+function highlight(e){
+  // Change the text's style and highlight the secret.
+  $(this).addClass("found");
+  // Removes the mouseover event from the found element.
+  $(this).off("mouseover", highlight);
+  //Increase the counter variable by one.
+  $secretsTotal -= 1;
 }
 
 
@@ -70,7 +75,7 @@ function spanClicked() {
 function update() {
   $spans.each(updateSpan);
   // Show the total number of secrets on the last line of the text
-  $(".secretsTotalNumber").text($secretTotal);
+  $(".secretsTotalNumber").text($secretsTotal);
 }
 
 // updateSpan()
