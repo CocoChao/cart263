@@ -39,7 +39,19 @@ function setup() {
   setInterval(update, UPDATE_FREQUENCY);
   // Track the number of total secrets
   $secretsTotal = $("secret").lenght;
+  // Add an event for "mouseover" to all the secrets
+  $('secrets').on('mouseover', disappear);
 };
+
+// disappear
+//
+// Called by the mouseover event handler to all the secrets.
+// Disappears once mouse is over a secret text.
+function disappear(e){
+  
+}
+
+
 
 // spanClicked()
 //
