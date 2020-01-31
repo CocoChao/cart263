@@ -30,8 +30,11 @@ body {
   text-decoration: none;
   color: black;
 }
-.total{
+.secretsTotalNumber{
   background-color: yellow;
   text-decoration: none;
   color: black;
+}
+.secret{
+  text-decoration: overline;
 }

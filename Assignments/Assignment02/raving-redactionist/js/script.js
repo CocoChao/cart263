@@ -20,9 +20,9 @@ const UPDATE_FREQUENCY = 500;
 let $spans;
 
 // A variable to track the number of secret found
-let secretsFound;
+let $secretsFound;
 // A variable to track the number of total secrets
-let secretsTotatl;
+let $secretsTotatl;
 
 // When the document is loaded we call the setup function
 $(document).ready(setup);
@@ -37,6 +37,8 @@ function setup() {
   $spans.on('click', spanClicked);
   // Set an interval of 500 milliseconds to update the state of the page
   setInterval(update, UPDATE_FREQUENCY);
+  // Track the number of total secrets
+  $secretsTotal = $("secret").lenght;
 };
 
 // spanClicked()
@@ -55,6 +57,8 @@ function spanClicked() {
 // elements in the selection
 function update() {
   $spans.each(updateSpan);
+  // Show the total number of secrets on the last line of the text
+  $(".secretsTotalNumber").text($secretTotal);
 }
 
 // updateSpan()
