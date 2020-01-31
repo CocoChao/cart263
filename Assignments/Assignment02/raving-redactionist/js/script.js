@@ -16,13 +16,14 @@ const REVEAL_POSSIBILITY = 0.1;
 // How often to update the spans (potentially revealing them)
 const UPDATE_FREQUENCY = 500;
 
-// A place to store the jQuery selection of all spans
-let $spans;
-
+// A variable to store redacted span
+let $redacted;
 // A variable to track the number of secret found
 let $secretsFound;
 // A variable to track the number of total secrets
 let $secretsTotatl;
+// A variable to track all the secrets
+let $secrets
 
 // When the document is loaded we call the setup function
 $(document).ready(setup);
@@ -32,13 +33,13 @@ $(document).ready(setup);
 // Sets the click handler and starts the time loop
 function setup() {
   // Save the selection of all spans (since we do stuff to them multiple times)
-  $spans = $('span');
+  $redacted = $('.redacted');
   // Set a click handler on the spans (so we know when they're clicked)
-  $spans.on('click', spanClicked);
+  $redacted.on('click', redactedClicked);
   // Set an interval of 500 milliseconds to update the state of the page
   setInterval(update, UPDATE_FREQUENCY);
   // Track the number of total secrets
-  $secretsTotal = $("secret").lenght;
+  $secretsTotal = $("secret").length;
   // Add an event for "mouseover" to highlight all the secrets
   $('secrets').on('mouseover', highlight);
 };
@@ -62,7 +63,7 @@ function highlight(e){
 //
 // When a span is clicked we remove its revealed class and add the redacted class
 // thus blacking it out
-function spanClicked() {
+function redactedClicked() {
   $(this).removeClass('revealed');
   $(this).addClass('redacted');
 }
@@ -73,9 +74,9 @@ function spanClicked() {
 // using jQuery's each() function which calls the specified function on _each_ of the
 // elements in the selection
 function update() {
-  $spans.each(updateSpan);
+  $redacted.each(updateSpan);
   // Show the total number of secrets on the last line of the text
-  $(".secretsTotalNumber").text($secretsTotal);
+  $secretsTotalNumber.text($found);
 }
 
 // updateSpan()

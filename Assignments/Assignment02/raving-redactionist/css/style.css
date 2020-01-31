@@ -27,14 +27,21 @@ body {
 }
 .found{
   background-color: yellow;
-  text-decoration: none;
+  text-decoration-line: underline;
   color: black;
+}
+.total{
+  background-color: yellow;
+  text-decoration-line: underline;
+  color: black;
+}
+.secret{
+  color: black;
+  text-decoration-line: underline;
+  text-decoration-style: double;
 }
 .secretsTotalNumber{
   background-color: yellow;
   text-decoration: none;
   color: black;
-}
-.secret{
-  text-decoration: overline;
 }
