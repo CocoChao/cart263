@@ -24,6 +24,7 @@ let $growth = 0;
 const chopSFX = new Audio ("assets/sounds/chop.wav");
 const rainSFX = new Audio("assets/sounds/rain.wav");
 
+
 // This code will run when the document is ready
 $(document).ready(setup);
 

@@ -18,3 +18,13 @@ div {
   background-color: turquoise;
   text-decoration-line: underline;
 }
+.treetrunk{
+  position: absolute;
+  align-items: center;
+  left: 281px;
+  top: 25px;
+  z-index: +1;
+  height: 300px;
+  width: 57px;
+  background-color: rgb(67,34,13);
+}
