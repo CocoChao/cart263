@@ -1,5 +1,16 @@
 "use strict";
 
+// Project 1
+// Previous codes from activity 1-2 and assignment 1-2.
+// by Carole Chao
+//
+//
+// Creates a game that reflexts on the story of Sisyphus. A lumberjack cuts a tree,
+// but whenever it reaches the roots, it starts raining and the tree grows back up.
+// It includes sound effects, music and images from giphy.com.
+
+
+
 //A variable to store each elements
 let $lumberjack; // png file
 let $movinglumberjack; // gif file
