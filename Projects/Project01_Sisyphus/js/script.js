@@ -1,31 +1,47 @@
 "use strict";
 
-let $animal;
-let $fly;
+//A variable to store each elements
+let $lumberjack;
+let $rain;
+let $tree;
 
-const buzzSFX = new Audio ("assets/sounds/buzz.mp3");
-const crunchSFX = new Audio("assets/sounds/crunch.wav");
+// Constants to store Sound Effects
+const chopSFX = new Audio ("assets/sounds/chop.wav");
+const rainSFX = new Audio("assets/sounds/rain.wav");
+
 
 $(document).ready(setup);
 
 // This code will run when the document is ready
 function setup() {
-  buzzSFX.loop = true;
+  $lumberjack.one('keydown',startchopSFX);
 
-  $animal=$("#animal");
-  $fly=$("#fly");
+//
+//   $animal=$("#animal");
+//   $fly=$("#fly");
+//
+//   $fly.draggable({
+//     start: function(){
+//     buzzSFX.play();
+//   },
+//     stop: function(){
+//     buzzSFX.pause();
+//   }
+//   });
+//   $animal.droppable({
+//   drop: onDrop
+//   });
+}
 
-  $fly.draggable({
-    start: function(){
-    buzzSFX.play();
-  },
-    stop: function(){
-    buzzSFX.pause();
+function startchopSFX(e){
+  if (e.keyCode === 32 ){ // Spacebar is pressed
+  chopSFX.play();
   }
-  });
-  $animal.droppable({
-  drop: onDrop
-  });
+}
+  else if (){
+function startrainSFX(){
+  rainSFX.play();
+  }
 }
 
 function onDrop(event,ui){
