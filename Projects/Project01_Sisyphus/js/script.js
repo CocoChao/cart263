@@ -1,9 +1,11 @@
 "use strict";
 
 //A variable to store each elements
-let $lumberjack;
+let $lumberjack; // png file
+let $movinglumberjack; // gif file
 let $rain;
 let $tree;
+
 // A variable to track the number of times the tree grows
 let $treeGrowth;
 let $growth = 0;
@@ -23,7 +25,7 @@ function setup() {
   // Set a keydown event handler on the lumberjack image
   $lumberjack.on('keydown',lumberjackKeydown);
 
-//
+  $
 //   $animal=$("#animal");
 //   $fly=$("#fly");
 //
@@ -46,7 +48,6 @@ function setup() {
 function lumberjackKeydown(e){
   if (e.keyCode === 32 ){ // Spacebar is pressed
   chopSFX.play();
-
   }
 }
   else if (){
@@ -55,7 +56,7 @@ function startrainSFX(){
   }
 }
 
-function onDrop(event,ui){
+function onKeydown(event,ui){
   console.log("!");
   ui.draggable.click();
   $(this).attr('src', 'assets/images/lumberjack.gif');
