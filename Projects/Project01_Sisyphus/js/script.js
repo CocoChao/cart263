@@ -12,8 +12,7 @@
 
 
 //A variable to store each elements
-let $lumberjack; // png file
-let $movinglumberjack; // gif file
+let $lumberjack;
 let $rain;
 let $tree;
 
@@ -33,24 +32,10 @@ $(document).ready(setup);
 // Sets the event handlers and starts the time loop
 // This code will run when the document is ready
 function setup() {
-  // Set a keydown event handler on the lumberjack image
-  $lumberjack.on('keydown',lumberjackKeydown);
+  // Set a keydown event handler on the document to change lumberjack image
+  $(document).on('keydown', lumberjackKeydown);
 
-  $
-//   $animal=$("#animal");
-//   $fly=$("#fly");
-//
-//   $fly.draggable({
-//     start: function(){
-//     buzzSFX.play();
-//   },
-//     stop: function(){
-//     buzzSFX.pause();
-//   }
-//   });
-//   $animal.droppable({
-//   drop: onDrop
-//   });
+  // Set an event handler on the document to
 }
 
 // lumberjackKeydown()
@@ -59,17 +44,11 @@ function setup() {
 function lumberjackKeydown(e){
   if (e.keyCode === 32 ){ // Spacebar is pressed
   chopSFX.play();
+  console.log("!");
+  $("#lumberjack").attr('src', 'assets/images/lumberjack.gif');
   }
 }
-  else if (){
+
 function startrainSFX(){
   rainSFX.play();
-  }
-}
-
-function onKeydown(event,ui){
-  console.log("!");
-  ui.draggable.click();
-  $(this).attr('src', 'assets/images/lumberjack.gif');
-
-}
+ }
