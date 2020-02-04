@@ -46,7 +46,7 @@ function startrainSFX(){
 
 function onDrop(event,ui){
   console.log("!");
-  ui.draggable.remove();
-  $(this).attr('src', 'assets/images/chewing.gif');
+  ui.draggable.click();
+  $(this).attr('src', 'assets/images/lumberjack.gif');
 
 }
