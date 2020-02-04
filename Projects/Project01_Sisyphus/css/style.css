@@ -1,9 +1,14 @@
-div {
-  margin-bottom: 20px;
-  font-size: 2em;
-}
 body {
   margin: 20px;
   font-size: 30px;
   text-align: left;
+}
+div {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+.score{
+  text-aligh: center;
+  font-size: 20px;
+  font-family: Courier, monospace;
 }
