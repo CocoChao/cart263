@@ -7,7 +7,8 @@
 //
 // Creates a game that reflexts on the story of Sisyphus. A lumberjack cuts a tree,
 // but whenever it reaches the roots, it starts raining and the tree grows back up.
-// It includes sound effects, music and images from giphy.com.
+// It includes sound effects, music and images from giphy.com
+// Reference html/script/css codes are from jqueryui.com and jquery.com
 
 
 
@@ -45,7 +46,6 @@ function setup() {
 function lumberjackKeydown(e){
   if (e.keyCode === 32 ){ // Spacebar is pressed
   chopSFX.play();
-  console.log("!");
   $("#lumberjack").attr('src', 'assets/images/lumberjack.gif');
   }
 }
@@ -53,3 +53,20 @@ function lumberjackKeydown(e){
 function startrainSFX(){
   rainSFX.play();
  }
+ $(function() {
+   $( "#dialog" ).dialog({
+     autoOpen: false,
+     show: {
+       effect: "blind",
+       duration: 1000
+     },
+     hide: {
+       effect: "explode",
+       duration: 1000
+     }
+   });
+
+   $( "#opener" ).on( "click", function() {
+     $( "#dialog" ).dialog( "open" );
+   });
+ } );
