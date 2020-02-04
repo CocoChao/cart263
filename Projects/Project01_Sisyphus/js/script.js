@@ -36,6 +36,9 @@ $(document).ready(setup);
 function setup() {
   // Set a keydown event handler on the document to change lumberjack image
   $(document).on('keydown', lumberjackKeydown);
+  // Set a mouseclick event handler on the document to make lumberjack stop working
+  // and stop sound
+  $(document).on('mousedown', lumberjackStop)
 
   // Set an event handler on the document to
 }
@@ -47,6 +50,19 @@ function lumberjackKeydown(e){
   if (e.keyCode === 32 ){ // Spacebar is pressed
   chopSFX.play();
   $("#lumberjack").attr('src', 'assets/images/lumberjack.gif');
+  $("#treetrunk").height(-1).css({
+  })
+}
+
+// lumberjackStop()
+//
+// When mousse is clicked, lumberjack takes a break (stop moving), chopSFX stops playing
+// and tree starts growing
+function lumberjackStop(e){
+  if (e.mousedown){
+  chopSFX.stop();
+  $("#lumberjack").attr('src', 'assets/images/lumberjack.png');
+  console.log("!");
   }
 }
 
@@ -70,3 +86,4 @@ function startrainSFX(){
      $( "#dialog" ).dialog( "open" );
    });
  } );
+}
