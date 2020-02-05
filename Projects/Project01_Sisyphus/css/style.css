@@ -3,6 +3,9 @@ body {
   font-size: 30px;
   text-align: left;
 }
+.li{
+  list-style-type: circle;
+}
 .score{
   font-size: 20px;
   font-family: Courier, monospace;
@@ -28,6 +31,9 @@ body {
 #instruction{
   font-size: 15px;
   background-color: rgb(204, 67, 74);
+}
+.li{
+  list-style-type: circle;
 }
 /* "Instructions" button style*/
 #opener{
