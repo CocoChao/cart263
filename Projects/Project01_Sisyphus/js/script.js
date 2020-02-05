@@ -31,6 +31,7 @@ const rainSFX = new Audio("assets/sounds/rain.wav");
 
 // This code will run when the document is ready
 $(document).ready(setup);
+
 // setup()
 //
 // Sets the event handlers and starts the time loop
@@ -41,8 +42,9 @@ function setup() {
   // Set a mouseclick event handler on the document to make lumberjack stop working
   // and stop sound
   $("#treetrunk").on('mousedown', lumberjackStop);
-  // Make it rain
+  // Make it rain and play the sound on loop
   createRain();
+  rainSFX.loop = true;
   rainSFX.play();
 }
 
@@ -54,17 +56,17 @@ function setup() {
 function lumberjackKeydown(e){
   if (e.keyCode === 32 ){ // Spacebar is pressed
 
-    if (  $("#treetrunk").css("height") ==="30px"){
-      console.log($growth);
-      $growth++;
-      $(".growth").text($growth);
-      $("#treetrunk").animate({height: '300', top: '25'},2000);
+      if (  $("#treetrunk").css("height") ==="30px"){
+        console.log($growth);
+        $growth++;
+        $(".growth").text($growth);
+        $("#treetrunk").animate({height: '300', top: '25'},2000);
+      }
+      else{
+      chopSFX.play();
+    $("#lumberjack").attr('src', 'assets/images/lumberjack.gif');
+    $("#treetrunk").animate({height: '-=10', top: '+=10'} , 100);
     }
-    else{
-  chopSFX.play();
-  $("#lumberjack").attr('src', 'assets/images/lumberjack.gif');
-  $("#treetrunk").animate({height: '-=10', top: '+=10'} , 100);
-}
   }
 
 }
@@ -72,17 +74,11 @@ function lumberjackKeydown(e){
 
 // lumberjackStop()
 //
-// When mousse is clicked, lumberjack takes a break (stop moving), chopSFX stops playing
-// and tree starts growing (+update score if the tree fully regrows)
+// When mousse clicks on the treetrunk, lumberjack takes a break (stop moving)
 function lumberjackStop(e){
   chopSFX.pause();
-  rainSFX.play();
   $("#lumberjack").attr('src', 'assets/images/lumberjack.png');
   console.log("!");
-
-}
-function treetrunkGrowth(e){
-
 }
 
 

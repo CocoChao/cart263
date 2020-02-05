@@ -13,6 +13,8 @@ body {
   font-family: Courier, monospace;
   width: 800px;
   margin-left: 125px;
+  color: white;
+  text-decoration: none;
 }
 .growth{
   font-size: 25px;
