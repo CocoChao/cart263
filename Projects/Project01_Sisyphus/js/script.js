@@ -112,7 +112,7 @@ console.log("rain");
 	for(let i=1;i<nbDrop;i++) {
     //console.log(i);
 	let dropLeft = randRange(20,480);
-	let dropTop = randRange(-1000,600);
+	let dropTop = randRange(-1000,900);
 
 	$('.rain').append('<div class="drop" id="drop'+i+'"></div>');
   $( '#drop' + i ).css( 'left', dropLeft + 'px' ).css( 'top', dropTop + 'px' );
