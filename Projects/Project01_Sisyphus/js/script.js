@@ -8,9 +8,11 @@
 // Creates a game that reflexts on the story of Sisyphus. A lumberjack cuts a tree,
 // but whenever it reaches the roots, it starts raining and the tree grows back up.
 // It includes sound effects, music and images from giphy.com
-// Reference html/script/css codes are from jqueryui.com and jquery.com
+// Reference html/script/css codes are from jqueryui.com, jquery.com
+// and https://gist.github.com/mmontolli/3512014
 
-
+// number of drops created.
+let nbDrop = 500;
 
 //A variable to store each elements
 let $lumberjack;
@@ -54,22 +56,30 @@ function lumberjackKeydown(e){
   $("#lumberjack").attr('src', 'assets/images/lumberjack.gif');
   $("#treetrunk").animate({height: '-=10', top: '+=10'} , 100);
   }
-
 }
 
 // lumberjackStop()
 //
 // When mousse is clicked, lumberjack takes a break (stop moving), chopSFX stops playing
-// and tree starts growing
+// and tree starts growing (+update score if the tree fully regrows)
 function lumberjackStop(e){
   chopSFX.pause();
   $("#lumberjack").attr('src', 'assets/images/lumberjack.png');
   console.log("!");
+  if ({height: '20px' === true }){
+    $("#treetrunk").animate({height: '300px'},5000);
+    growth++;
+    $("#$treeGrowths").text($growth);
+  }
+}
+function treetrunkGrowth(e){
+
 }
 
 function startrainSFX(){
   rainSFX.play();
  }
+
 // Code from https://jqueryui.com/dialog/#animated:
  $(function() {
    $( "#dialog" ).dialog({
@@ -88,3 +98,26 @@ function startrainSFX(){
      $( "#dialog" ).dialog( "open" );
    });
  } );
+
+ // function to generate a random drop number range.
+function randRange( minNum, maxNum) {
+  return (Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum);
+}
+
+// function to generate drops
+function createRain() {
+console.log("rain");
+	for(i=1;i<nbDrop;i++) {
+    console.log(i);
+	var dropLeft = randRange(0,1600);
+	var dropTop = randRange(-1000,1400);
+
+	$('.rain').append('<div class="drop" id="drop'+i+'"></div>');
+	//$('#drop'+i).css('left',dropLeft);
+//	$('#drop'+i).css('top',dropTop);
+$( '#drop' + i ).css( 'left', dropLeft + 'px' ).css( 'top', dropTop + 'px' );
+	}
+
+}
+// Make it rain
+createRain();
