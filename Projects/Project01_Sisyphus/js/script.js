@@ -38,7 +38,7 @@ function setup() {
   $(document).on('keydown', lumberjackKeydown);
   // Set a mouseclick event handler on the document to make lumberjack stop working
   // and stop sound
-  $(document).on('mousedown', lumberjackStop);
+  $("#treetrunk").on('mousedown', lumberjackStop);
 
   // Set an event handler on the document to
 }
@@ -53,7 +53,6 @@ function lumberjackKeydown(e){
   chopSFX.play();
   $("#lumberjack").attr('src', 'assets/images/lumberjack.gif');
   $("#treetrunk").animate({height: '-=10', top: '+=10'} , 100);
-    console.log(  $("#treetrunk"))
   }
 
 }
@@ -63,11 +62,9 @@ function lumberjackKeydown(e){
 // When mousse is clicked, lumberjack takes a break (stop moving), chopSFX stops playing
 // and tree starts growing
 function lumberjackStop(e){
-  if (e.mousedown){
-  chopSFX.stop();
+  chopSFX.pause();
   $("#lumberjack").attr('src', 'assets/images/lumberjack.png');
   console.log("!");
-  }
 }
 
 function startrainSFX(){
