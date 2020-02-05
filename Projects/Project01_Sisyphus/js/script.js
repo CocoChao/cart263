@@ -38,7 +38,7 @@ function setup() {
   $(document).on('keydown', lumberjackKeydown);
   // Set a mouseclick event handler on the document to make lumberjack stop working
   // and stop sound
-  $(document).on('mousedown', lumberjackStop)
+  $(document).on('mousedown', lumberjackStop);
 
   // Set an event handler on the document to
 }
@@ -46,12 +46,16 @@ function setup() {
 // lumberjackKeydown()
 //
 // When key is down, chopSFX plays and the image is replaced by the gif.
+// "jQuery - Change height of Div on button click" code reference:
+// https://stackoverflow.com/questions/5616823/jquery-change-height-of-div-on-button-click
 function lumberjackKeydown(e){
   if (e.keyCode === 32 ){ // Spacebar is pressed
   chopSFX.play();
   $("#lumberjack").attr('src', 'assets/images/lumberjack.gif');
-  $("#treetrunk").height(-1).css({
-  })
+  $("#treetrunk").animate({height: '-=10', top: '+=10'} , 100);
+    console.log(  $("#treetrunk"))
+  }
+
 }
 
 // lumberjackStop()
@@ -69,6 +73,7 @@ function lumberjackStop(e){
 function startrainSFX(){
   rainSFX.play();
  }
+// Code from https://jqueryui.com/dialog/#animated:
  $(function() {
    $( "#dialog" ).dialog({
      autoOpen: false,
@@ -86,4 +91,3 @@ function startrainSFX(){
      $( "#dialog" ).dialog( "open" );
    });
  } );
-}

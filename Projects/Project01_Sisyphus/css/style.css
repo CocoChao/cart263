@@ -14,7 +14,7 @@ body {
   background-color: turquoise;
   text-decoration-line: underline;
 }
-.treetrunk{
+#treetrunk{
   position: absolute;
   align-items: center;
   left: 281px;
@@ -24,11 +24,12 @@ body {
   width: 57px;
   background-color: rgb(67,34,13);
 }
-.instruction{
-  font-size: 20px;
+#instruction{
+  font-size: 15px;
   background-color: rgb(204, 67, 74);
 }
-.opener{
+#opener{
   font-size: 15px;
-  background-color: rgb(50, 168, 82;)
+  background-color: rgb(204, 67, 74);
+  align-content: center;
 }
