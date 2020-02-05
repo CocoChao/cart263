@@ -2,14 +2,16 @@
 
 // Project 1
 // Previous codes from activity 1-2 and assignment 1-2.
+// It includes sound effects, music and images from giphy.com and freesound.org
+// Reference html/script/css codes are from jqueryui.com jquery.com
+// and https://gist.github.com/mmontolli/3512014 for the raindrop effect
 // by Carole Chao
+// With the help of Sabine
 //
 //
 // Creates a game that reflexts on the story of Sisyphus. A lumberjack cuts a tree,
 // but whenever it reaches the roots, it starts raining and the tree grows back up.
-// It includes sound effects, music and images from giphy.com
-// Reference html/script/css codes are from jqueryui.com, jquery.com
-// and https://gist.github.com/mmontolli/3512014
+
 
 // number of drops created.
 let nbDrop = 500;
@@ -20,7 +22,6 @@ let $rain;
 let $tree;
 
 // A variable to track the number of times the tree grows
-let $treeGrowth;
 let $growth = 0;
 
 // Constants to store Sound Effects
@@ -30,7 +31,6 @@ const rainSFX = new Audio("assets/sounds/rain.wav");
 
 // This code will run when the document is ready
 $(document).ready(setup);
-
 // setup()
 //
 // Sets the event handlers and starts the time loop
@@ -41,8 +41,9 @@ function setup() {
   // Set a mouseclick event handler on the document to make lumberjack stop working
   // and stop sound
   $("#treetrunk").on('mousedown', lumberjackStop);
-
-  // Set an event handler on the document to
+  // Make it rain
+  createRain();
+  rainSFX.play();
 }
 
 // lumberjackKeydown()
@@ -52,11 +53,22 @@ function setup() {
 // https://stackoverflow.com/questions/5616823/jquery-change-height-of-div-on-button-click
 function lumberjackKeydown(e){
   if (e.keyCode === 32 ){ // Spacebar is pressed
+
+    if (  $("#treetrunk").css("height") ==="30px"){
+      console.log($growth);
+      $growth++;
+      $(".growth").text($growth);
+      $("#treetrunk").animate({height: '300', top: '25'},2000);
+    }
+    else{
   chopSFX.play();
   $("#lumberjack").attr('src', 'assets/images/lumberjack.gif');
   $("#treetrunk").animate({height: '-=10', top: '+=10'} , 100);
-  }
 }
+  }
+
+}
+
 
 // lumberjackStop()
 //
@@ -64,21 +76,15 @@ function lumberjackKeydown(e){
 // and tree starts growing (+update score if the tree fully regrows)
 function lumberjackStop(e){
   chopSFX.pause();
+  rainSFX.play();
   $("#lumberjack").attr('src', 'assets/images/lumberjack.png');
   console.log("!");
-  if ({height: '20px' === true }){
-    $("#treetrunk").animate({height: '300px'},5000);
-    growth++;
-    $("#$treeGrowths").text($growth);
-  }
+
 }
 function treetrunkGrowth(e){
 
 }
 
-function startrainSFX(){
-  rainSFX.play();
- }
 
 // Code from https://jqueryui.com/dialog/#animated:
  $(function() {
@@ -107,17 +113,13 @@ function randRange( minNum, maxNum) {
 // function to generate drops
 function createRain() {
 console.log("rain");
-	for(i=1;i<nbDrop;i++) {
-    console.log(i);
-	var dropLeft = randRange(0,1600);
-	var dropTop = randRange(-1000,1400);
+	for(let i=1;i<nbDrop;i++) {
+    //console.log(i);
+	let dropLeft = randRange(20,480);
+	let dropTop = randRange(-1000,600);
 
 	$('.rain').append('<div class="drop" id="drop'+i+'"></div>');
-	//$('#drop'+i).css('left',dropLeft);
-//	$('#drop'+i).css('top',dropTop);
-$( '#drop' + i ).css( 'left', dropLeft + 'px' ).css( 'top', dropTop + 'px' );
+  $( '#drop' + i ).css( 'left', dropLeft + 'px' ).css( 'top', dropTop + 'px' );
 	}
 
 }
-// Make it rain
-createRain();
