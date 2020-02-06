@@ -40,7 +40,7 @@ body {
 .li{
   list-style-type: circle;
 }
-/* "Instructions" button style*/
+/* "Instructions" button style from jQuery UI*/
 #opener{
   font-size: 18px;
   color: white;
@@ -51,7 +51,7 @@ body {
   border-radius: 12px;
   margin-left: 125px;
 }
-/* Popup of list of instructions */
+/* Popup of list of instructions from jQuery UI */
 #dialog{
   font-family: Courier, monospace;
   font-size: 15px;
@@ -60,6 +60,7 @@ body {
   color: #FFFFFF;
   cursor:
 }
+ /* Code from https://jqueryui.com/dialog/#animated: */
 .drop {
   background:-webkit-gradient(linear,0% 0%,0% 100%, from(rgba(13,52,58,1) ), to(rgba(255,255,255,0.6))  );
   background: -moz-linear-gradient(top, rgba(13,52,58,1) 0%, rgba(255,255,255,.6) 100%);

@@ -13,7 +13,7 @@
 // but whenever it reaches the roots, it starts raining and the tree grows back up.
 
 
-// number of drops created.
+// The number of drops created.
 let nbDrop = 500;
 
 //A variable to store each elements
@@ -79,7 +79,7 @@ function lumberjackKeydown(e){
 // lumberjackStop()
 //
 // When mouse clicks on the treetrunk, lumberjack takes a break (stop moving)
-// Click 2 seconds after pressing spacebar because it takes two second for the GIF to stop
+// Click 2 seconds after pressing spacebar because it takes two second (delay) for the GIF to stop
 function lumberjackStop(e){
     chopSFX.pause();
     $("#lumberjack").attr('src', 'assets/images/lumberjack.png');
