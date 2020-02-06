@@ -6,10 +6,10 @@
 // Reference html/script/css codes are from jqueryui.com jquery.com
 // and https://gist.github.com/mmontolli/3512014 for the raindrop effect
 // by Carole Chao
-// With the help of Sabine
 //
 //
-// Creates a game that reflexts on the story of Sisyphus. A lumberjack cuts a tree,
+//
+// A game that reflects on the story of Sisyphus. A lumberjack cuts a tree,
 // but whenever it reaches the roots, it starts raining and the tree grows back up.
 
 
@@ -20,6 +20,7 @@ let nbDrop = 500;
 let $lumberjack;
 let $rain;
 let $tree;
+let $umbrella;
 
 // A variable to track the number of times the tree grows
 let $growth = 0;
@@ -34,8 +35,7 @@ $(document).ready(setup);
 
 // setup()
 //
-// Sets the event handlers and starts the time loop
-// This code will run when the document is ready
+// Sets the event handlers
 function setup() {
   // Set a keydown event handler on the document to change lumberjack image
   $(document).on('keydown', lumberjackKeydown);
@@ -46,20 +46,25 @@ function setup() {
   createRain();
   rainSFX.loop = true;
   rainSFX.play();
+  // Set a draggable event handler on the document to drag the umbrella image on top of lumberjack
+  $("#umbrella").on('draggable', dragUmbrella);
 }
 
 // lumberjackKeydown()
 //
-// When key is down, chopSFX plays and the image is replaced by the gif.
+// When key is down, chopSFX plays, the image is replaced by the gif and treetrunk
+// decreases by 10px.
 // "jQuery - Change height of Div on button click" code reference:
 // https://stackoverflow.com/questions/5616823/jquery-change-height-of-div-on-button-click
 function lumberjackKeydown(e){
   if (e.keyCode === 32 ){ // Spacebar is pressed
-
-      if (  $("#treetrunk").css("height") ==="30px"){
-        console.log($growth);
+      if ($("#treetrunk").css("height") ==="30px"){
+        // console.log($growth);
+        // Add 1 to score every time the tree grows back
         $growth++;
         $(".growth").text($growth);
+        // Tree trunk grows back to its original height once everytime
+        // lumberjack chops trunk height to 30px
         $("#treetrunk").animate({height: '300', top: '25'},2000);
       }
       else{
@@ -74,11 +79,12 @@ function lumberjackKeydown(e){
 
 // lumberjackStop()
 //
-// When mousse clicks on the treetrunk, lumberjack takes a break (stop moving)
+// When mouse clicks on the treetrunk, lumberjack takes a break (stop moving)
+// Click 2 seconds after pressing spacebar because it takes two second for the GIF to stop
 function lumberjackStop(e){
-  chopSFX.pause();
-  $("#lumberjack").attr('src', 'assets/images/lumberjack.png');
-  console.log("!");
+    chopSFX.pause();
+    $("#lumberjack").attr('src', 'assets/images/lumberjack.png');
+    // console.log("#treetrunk");
 }
 
 
@@ -108,7 +114,7 @@ function randRange( minNum, maxNum) {
 
 // function to generate drops
 function createRain() {
-console.log("rain");
+// console.log("rain");
 	for(let i=1;i<nbDrop;i++) {
     //console.log(i);
 	let dropLeft = randRange(20,480);
@@ -117,5 +123,8 @@ console.log("rain");
 	$('.rain').append('<div class="drop" id="drop'+i+'"></div>');
   $( '#drop' + i ).css( 'left', dropLeft + 'px' ).css( 'top', dropTop + 'px' );
 	}
-
 }
+// Drag umbrella on top of lumberjack to protect him from the rain
+function dragUmbrella(event,ui){
+  $("#umbrella").draggable()
+  }
