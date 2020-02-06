@@ -19,7 +19,7 @@ body {
 }
 .growth{
   font-size: 25px;
-  background-color: #FEC901; 
+  background-color: #FEC901;
   text-decoration-line: underline;
 }
 #treetrunk{
@@ -60,7 +60,6 @@ body {
   color: #FFFFFF;
   cursor:
 }
- /* Code from https://jqueryui.com/dialog/#animated: */
 .drop {
   background:-webkit-gradient(linear,0% 0%,0% 100%, from(rgba(13,52,58,1) ), to(rgba(255,255,255,0.6))  );
   background: -moz-linear-gradient(top, rgba(13,52,58,1) 0%, rgba(255,255,255,.6) 100%);
