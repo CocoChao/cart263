@@ -35,6 +35,7 @@ body {
 #umbrella{
   max-height: 200px;
   max-width: 200px;
+  cursor: grab;
 }
 .li{
   list-style-type: circle;

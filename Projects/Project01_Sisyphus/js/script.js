@@ -47,7 +47,7 @@ function setup() {
   rainSFX.loop = true;
   rainSFX.play();
   // Set a draggable event handler on the document to drag the umbrella image on top of lumberjack
-  $("#umbrella").on('draggable', dragUmbrella);
+  $("#umbrella").draggable();
 }
 
 // lumberjackKeydown()
@@ -73,7 +73,6 @@ function lumberjackKeydown(e){
     $("#treetrunk").animate({height: '-=10', top: '+=10'} , 100);
     }
   }
-
 }
 
 
@@ -124,7 +123,3 @@ function createRain() {
   $( '#drop' + i ).css( 'left', dropLeft + 'px' ).css( 'top', dropTop + 'px' );
 	}
 }
-// Drag umbrella on top of lumberjack to protect him from the rain
-function dragUmbrella(event,ui){
-  $("#umbrella").draggable()
-  }
