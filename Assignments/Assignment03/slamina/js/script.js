@@ -4,6 +4,8 @@
 
 Slamina
 rraB nippiP
+Modified by:
+oahC eloraC
 
 A simple guessing game based on voice synthesis. The computer reads out an
 animal name, but it reads it backwards. The user selects the animal they
@@ -164,6 +166,19 @@ let $correctButton;
 let buttons = [];
 // How many possible answers there are per round
 const NUM_OPTIONS = 5;
+
+// Commands that annyang should listen to
+var commands = {'I give up': giveUpFunction};
+var commands2 = {'Say it again': repeatFunction};
+
+annyang.addCommands(commands);
+annyang.addCommands(commands2);
+annyang.addCallback
+
+// initialize annyang, overwriting any previously added commands
+annyang.init(commands, true);
+// adds an additional command without removing the previous commands
+annyang.init(commands2, false);
 
 // Get setup!
 $(document).ready(setup);
