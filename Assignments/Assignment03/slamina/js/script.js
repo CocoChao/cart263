@@ -166,28 +166,29 @@ let $correctButton;
 let buttons = [];
 // How many possible answers there are per round
 const NUM_OPTIONS = 5;
+// Variable to track score
+let score = 0;
 
 // Commands that annyang should listen to
-var commands = {'I give up': giveUpFunction};
-var commands2 = {'Say it again': repeatFunction};
+let commands = {
+  'I give up': giveUpGuess,
+  'Say it again': sayBackwards,
+  'I think it is *name': handleGuess
+};
 
-annyang.addCommands(commands);
-annyang.addCommands(commands2);
-annyang.addCallback
-
-// initialize annyang, overwriting any previously added commands
-annyang.init(commands, true);
-// adds an additional command without removing the previous commands
-annyang.init(commands2, false);
-
-// Get setup!
 $(document).ready(setup);
 
 // setup()
 //
-// We just start a new round right away!
+// Start game, make annyang follow the commands and add annyang to
+//start listening.
 function setup() {
+  if (annyang){
+    annyang.addCommands(commands);
+    annyang.start();
+  }
   newRound();
+
 }
 
 // newRound()
@@ -200,9 +201,9 @@ function newRound() {
   // Loop for each option we'll offter
   for (let i = 0; i < NUM_OPTIONS; i++) {
     // Choose the answer text randomly from the animals array
-    let answer = getRandomElement(animals);
+    let name = getRandomElement(animals);
     // Add a button with this label
-    let $button = addButton(answer);
+    let $button = addButton(name);
     // Add this button to the buttons array
     buttons.push($button);
   }
@@ -228,13 +229,11 @@ function sayBackwards(text) {
   // (We do this all in one line using "chaining" because .split() returns an array for
   // for .reverse() to work on, and .reverse() returns an array for .join() to work on.)
   let backwardsText = text.split('').reverse().join('');
-
   // Set some random numbers for the voice's pitch and rate parameters for a bit of fun
   let options = {
-    pitch: Math.random(),
-    rate: Math.random()
+    pitch: 1,
+    rate: 0.75
   };
-
   // Use ResponsiveVoice to speak the string we generated, with UK English Male voice
   // and the options we just specified.
   responsiveVoice.speak(backwardsText, 'UK English Male', options);
@@ -256,7 +255,7 @@ function addButton(label) {
   // Listen for a click on the button which means the user has guessed
   $button.on('click', handleGuess);
   // Finally, add the button to the page so we can see it
-  $('body').append($button);
+  $('.guesses').append($button);
   // Return the button
   return $button;
 }
@@ -267,20 +266,29 @@ function addButton(label) {
 // if so starts a new round
 // if not indicates it was incorrect
 function handleGuess() {
-  // If the button they clicked on has the same label as
-  // the correct button, it must be the right answer...
-  if ($(this).text() === $correctButton.text()) {
+  if (!name == $correctButton.text()){
+    $(this).effect('shake');
     // Remove all the buttons
     $('.guess').remove();
     // Start a new round
     setTimeout(newRound, 1000);
   }
   else {
-    // Otherwise they were wrong, so shake the clicked button
-    $(this).effect('shake');
+    // Otherwise shake all the guess buttons
+    $('.guess').effect('shake');
     // And say the correct animal again to "help" them
     sayBackwards($correctButton.text());
   }
+}
+
+function giveUpGuess(){
+  // If they say "I give up", the correct answer should appear.
+  if (!name == $correctButton.text()){
+    $(this).effect('shake');
+  } else if (name === $correctButton.text()){
+    revealCorrectName
+  }
+
 }
 
 // getRandomElement(array)
@@ -289,4 +297,8 @@ function handleGuess() {
 function getRandomElement(array) {
   let element = array[Math.floor(Math.random() * array.length)];
   return element;
+}
+function resetRound(){
+  $('.guess').remove();
+  newRound();
 }
