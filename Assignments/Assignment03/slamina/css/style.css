@@ -1,11 +1,23 @@
 body {
   height: 100%;
   width: 100%;
+  background-color: turquoise;
+  font-family: Courier, monospace;
   /* overflow: hidden; */
 }
 
-#click-to-begin {
-  font-size: 2em;
+.score{
+  font-size: 20px;
   font-weight: bold;
-  text-align: center; 
+  width: 800px;
+  margin-left: 125px;
+  color: white;
+  text-decoration: none;
+}
+.name{
+  font-size: 25px;
+  text-decoration-line: underline;
+}
+.instructions{
+
 }
