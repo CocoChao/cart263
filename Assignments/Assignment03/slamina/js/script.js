@@ -172,7 +172,7 @@ let score = 0;
 // Commands that annyang should listen to
 let commands = {
   'I give up': giveUpGuess,
-  'Say it again': sayBackwards,
+  'Say it again': sayAgain,
   'I think it is *name': handleGuess
 };
 
@@ -191,6 +191,10 @@ function setup() {
 
 }
 
+function sayAgain(){
+    sayBackwards($correctButton.text());
+}
+
 // newRound()
 //
 // Generates a set of possible answers randomly from the set of animals
@@ -206,7 +210,9 @@ function newRound() {
     let $button = addButton(name);
     // Add this button to the buttons array
     buttons.push($button);
+
   }
+
   // Choose a random button from the buttons array as our correct button
   $correctButton = getRandomElement(buttons);
   // Say the label (text) on this button
@@ -253,9 +259,9 @@ function addButton(label) {
   // Turn the div into a button using jQuery UI's .button() method
   $button.button();
   // Listen for a click on the button which means the user has guessed
-  $button.on('click', handleGuess);
+  $button.on('click', clickGuess);
   // Finally, add the button to the page so we can see it
-  $('.guesses').append($button);
+  $('body').append($button);
   // Return the button
   return $button;
 }
@@ -265,11 +271,34 @@ function addButton(label) {
 // Checks whether this was the correct guess (button) and
 // if so starts a new round
 // if not indicates it was incorrect
-function handleGuess() {
-  if (!name == $correctButton.text()){
+function handleGuess(name) {
+  console.log("NAME:: "+name);
+  if (name.toLowerCase() == $correctButton.text().toLowerCase()){
     $(this).effect('shake');
     // Remove all the buttons
     $('.guess').remove();
+    score = score + 1;
+    $("#scoreVal").text(score);
+    // Start a new round
+    setTimeout(newRound, 1000);
+
+
+  }
+  else {
+    // Otherwise shake all the guess buttons
+    $('.guess').effect('shake');
+    // And say the correct animal again to "help" them
+    sayBackwards($correctButton.text());
+  }
+}
+function clickGuess() {
+  if ($(this).text().toLowerCase() == $correctButton.text().toLowerCase()){
+    $(this).effect('shake');
+    // Remove all the buttons
+    $('.guess').remove();
+    // Set the score
+    score = score + 1;
+    $("#scoreVal").text(score);
     // Start a new round
     setTimeout(newRound, 1000);
   }
@@ -283,12 +312,7 @@ function handleGuess() {
 
 function giveUpGuess(){
   // If they say "I give up", the correct answer should appear.
-  if (!name == $correctButton.text()){
-    $(this).effect('shake');
-  } else if (name === $correctButton.text()){
-    revealCorrectName
-  }
-
+    $correctButton.effect('shake');
 }
 
 // getRandomElement(array)
