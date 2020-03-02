@@ -2,162 +2,35 @@
 
 /*****************
 
-Slamina
-rraB nippiP
-Modified by:
-oahC eloraC
+Something is wrong on the Internet
+By: Carole Chao
 
-A simple guessing game based on voice synthesis. The computer reads out an
-animal name, but it reads it backwards. The user selects the animal they
-think it is and either gets it right or wrong. If right, a new level is generated.
-If wrong, the voice reads it out again.
+DESCRIPTION
 
 Uses:
 
 ResponsiveVoice
 https://responsivevoice.org/
 
-Animal names from:
-https://github.com/dariusk/corpora/blob/master/data/animals/common.json
 
 ******************/
 
-// An array of animal names that we use to create our guessing game
-let animals = [
-  "aardvark",
-  "alligator",
-  "alpaca",
-  "antelope",
-  "ape",
-  "armadillo",
-  "baboon",
-  "badger",
-  "bat",
-  "bear",
-  "beaver",
-  "bison",
-  "boar",
-  "buffalo",
-  "bull",
-  "camel",
-  "canary",
-  "capybara",
-  "cat",
-  "chameleon",
-  "cheetah",
-  "chimpanzee",
-  "chinchilla",
-  "chipmunk",
-  "cougar",
-  "cow",
-  "coyote",
-  "crocodile",
-  "crow",
-  "deer",
-  "dingo",
-  "dog",
-  "donkey",
-  "dromedary",
-  "elephant",
-  "elk",
-  "ewe",
-  "ferret",
-  "finch",
-  "fish",
-  "fox",
-  "frog",
-  "gazelle",
-  "gila monster",
-  "giraffe",
-  "gnu",
-  "goat",
-  "gopher",
-  "gorilla",
-  "grizzly bear",
-  "ground hog",
-  "guinea pig",
-  "hamster",
-  "hedgehog",
-  "hippopotamus",
-  "hog",
-  "horse",
-  "hyena",
-  "ibex",
-  "iguana",
-  "impala",
-  "jackal",
-  "jaguar",
-  "kangaroo",
-  "koala",
-  "lamb",
-  "lemur",
-  "leopard",
-  "lion",
-  "lizard",
-  "llama",
-  "lynx",
-  "mandrill",
-  "marmoset",
-  "mink",
-  "mole",
-  "mongoose",
-  "monkey",
-  "moose",
-  "mountain goat",
-  "mouse",
-  "mule",
-  "muskrat",
-  "mustang",
-  "mynah bird",
-  "newt",
-  "ocelot",
-  "opossum",
-  "orangutan",
-  "oryx",
-  "otter",
-  "ox",
-  "panda",
-  "panther",
-  "parakeet",
-  "parrot",
-  "pig",
-  "platypus",
-  "polar bear",
-  "porcupine",
-  "porpoise",
-  "prairie dog",
-  "puma",
-  "rabbit",
-  "raccoon",
-  "ram",
-  "rat",
-  "reindeer",
-  "reptile",
-  "rhinoceros",
-  "salamander",
-  "seal",
-  "sheep",
-  "shrew",
-  "silver fox",
-  "skunk",
-  "sloth",
-  "snake",
-  "squirrel",
-  "tapir",
-  "tiger",
-  "toad",
-  "turtle",
-  "walrus",
-  "warthog",
-  "weasel",
-  "whale",
-  "wildcat",
-  "wolf",
-  "wolverine",
-  "wombat",
-  "woodchuck",
-  "yak",
-  "zebra"
+// A variable to add the start screen and ending screen.
+let gameState = 1; //game is active
+// Press E to exit
+
+// A variable to store each element
+let $wifiLogo;
+let $loading;
+let $emptyPhone;
+
+// An array of Videos that we use to create our random video generator
+let videos = [
+  "coconut",
+  "peanut butter",
+  "crab rave",
+  "duck",
+  "conga"
 ];
 
 // We need to track the correct button for each round
@@ -171,10 +44,14 @@ let score = 0;
 
 // Commands that annyang should listen to
 let commands = {
-  'I give up': giveUpGuess,
+  'Turn wifi on': wifiOn,
+  'Turn wifi off': wifiOff,
   'Say it again': sayAgain,
-  'I think it is *name': handleGuess
+  'Play *name': handleVideo,
+  //'I think it is *name': handleGuess
+  'Read me *story': readStory
 };
+
 
 $(document).ready(setup);
 
@@ -187,14 +64,56 @@ function setup() {
     annyang.addCommands(commands);
     annyang.start();
   }
-  newRound();
+  //newRound();
 
 }
+// draw()
+// Add the ability to start interracting with the computer when player says
+// "turn wifi on".
+// Handles instruction screen and story screen
+function draw(){
+  if (gameState === 1){
+    wifiOn();
+    // fill(255,255,255);
+    // textFont(wallpoet);
+    // $("#wifiLogo").click(function(){}
+  }
+  else if (gameState === 2){
+    $("#loading").
+  }
+}
 
+function wifiOn(){
+  // fill(255,255,255);
+  // textFont(wallpoet);
+  // $("#wifiLogo").click(function(){}
+}
+
+
+// Code from https://jqueryui.com/dialog/#animated:
+ $(function() {
+   $( "#dialog" ).dialog({
+     autoOpen: false,
+     show: {
+       effect: "blind",
+       duration: 1000
+     },
+     hide: {
+       effect: "explode",
+       duration: 1000
+     }
+   });
+
+   $( "#opener" ).on( "click", function() {
+     $( "#dialog" ).dialog( "open" );
+   });
+ } );
+ 
 function sayAgain(){
     sayBackwards($correctButton.text());
 }
 
+/*
 // newRound()
 //
 // Generates a set of possible answers randomly from the set of animals
@@ -218,7 +137,10 @@ function newRound() {
   // Say the label (text) on this button
   sayBackwards($correctButton.text());
 }
+*/
 
+
+/*
 // sayBackwards(text)
 //
 // Uses ResponsiveVoice to say the specified text backwards!
@@ -244,6 +166,7 @@ function sayBackwards(text) {
   // and the options we just specified.
   responsiveVoice.speak(backwardsText, 'UK English Male', options);
 }
+*/
 
 // addButton(label)
 //

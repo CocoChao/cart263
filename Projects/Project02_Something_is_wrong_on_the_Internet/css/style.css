@@ -14,15 +14,27 @@ body {
   color: white;
   text-decoration: none;
 }
-#scoreVal{
-  font-size: 25px;
-  text-decoration-line: underline;
-}
 .instructions{
-
+  font-style: normal;
+  font-family:Georgia;
+  font-size: 20px;
+  text-decoration: underline;
 }
 #click-to-begin {
   font-size: 2em;
   font-weight: bold;
   text-align: center;
+}
+#wifiLogo {
+  align-items: center;
+  height: 150%;
+  width: 150%;
+}
+#dialog{
+  font-family: Courier, monospace;
+  font-size: 15px;
+  background: rgb(150, 101, 68);
+  border: 2px solid #b5b5b5;
+  color: #FFFFFF;
+  cursor:
 }
