@@ -6,6 +6,8 @@ Something is wrong on the Internet
 By: Carole Chao
 
 DESCRIPTION
+Player has uses responsiveVoice and Annyang to open the different pages, from
+turning the wifi on, load page, show the instructions and
 
 Uses:
 
@@ -25,7 +27,7 @@ let $loading;
 let $emptyPhone;
 
 // An array of Videos that we use to create our random video generator
-let videos = [
+let $videos = [
   "coconut",
   "peanut butter",
   "crab rave",
@@ -34,22 +36,22 @@ let videos = [
 ];
 
 // We need to track the correct button for each round
-let $correctButton;
+// let $correctButton;
 // We also track the set of buttons
-let buttons = [];
+// let buttons = [];
 // How many possible answers there are per round
-const NUM_OPTIONS = 5;
+// const NUM_OPTIONS = 5;
 // Variable to track score
-let score = 0;
+// let score = 0;
 
 // Commands that annyang should listen to
 let commands = {
-  'Turn wifi on': wifiOn,
-  'Turn wifi off': wifiOff,
-  'Say it again': sayAgain,
-  'Play *name': handleVideo,
+  'Internet on': wifiOn,
+  'Internet off': wifiOff,
+  'Say it again': sayAgain
+  // 'Play *name': handleVideo,
   //'I think it is *name': handleGuess
-  'Read me *story': readStory
+  // 'Read me *story': readStory
 };
 
 
@@ -60,35 +62,42 @@ $(document).ready(setup);
 // Start game, make annyang follow the commands and add annyang to
 //start listening.
 function setup() {
+  $(".Youtube").hide();
+  $("#loading").hide();
+  $("#dialog").show();
   if (annyang){
     annyang.addCommands(commands);
     annyang.start();
+    // annyang.debug();
   }
-  //newRound();
+  document.getElementById('wifiLogo').style.display = "block";
+}
 
-}
-// draw()
-// Add the ability to start interracting with the computer when player says
-// "turn wifi on".
-// Handles instruction screen and story screen
-function draw(){
-  if (gameState === 1){
-    wifiOn();
-    // fill(255,255,255);
-    // textFont(wallpoet);
-    // $("#wifiLogo").click(function(){}
-  }
-  else if (gameState === 2){
-    $("#loading").
-  }
-}
 
 function wifiOn(){
-  // fill(255,255,255);
-  // textFont(wallpoet);
-  // $("#wifiLogo").click(function(){}
+  if (gameState===1){
+    gameState=2;
+    // setup();
+    $("#loading").show();
+    $("#wifiLogo").hide();
+    $("button").hide();
+    console.log("wifiOn");
+    $("#loading").on("click", videoAppear);
+  }
+}
+function videoAppear(){
+  if (gameState===2){
+    gameState=3;
+    $(".Youtube").show();
+    $("#loading").hide();
+  }
 }
 
+function wifiOff(){
+  if (gameState===5){
+    restartPage()
+  }
+}
 
 // Code from https://jqueryui.com/dialog/#animated:
  $(function() {
@@ -103,44 +112,16 @@ function wifiOn(){
        duration: 1000
      }
    });
-
    $( "#opener" ).on( "click", function() {
      $( "#dialog" ).dialog( "open" );
    });
  } );
- 
+
 function sayAgain(){
     sayBackwards($correctButton.text());
 }
 
-/*
-// newRound()
-//
-// Generates a set of possible answers randomly from the set of animals
-// and adds buttons for each one. Then chooses the correct button randomly.
-function newRound() {
-  // We empty the buttons array for the new round
-  buttons = [];
-  // Loop for each option we'll offter
-  for (let i = 0; i < NUM_OPTIONS; i++) {
-    // Choose the answer text randomly from the animals array
-    let name = getRandomElement(animals);
-    // Add a button with this label
-    let $button = addButton(name);
-    // Add this button to the buttons array
-    buttons.push($button);
 
-  }
-
-  // Choose a random button from the buttons array as our correct button
-  $correctButton = getRandomElement(buttons);
-  // Say the label (text) on this button
-  sayBackwards($correctButton.text());
-}
-*/
-
-
-/*
 // sayBackwards(text)
 //
 // Uses ResponsiveVoice to say the specified text backwards!
@@ -166,28 +147,6 @@ function sayBackwards(text) {
   // and the options we just specified.
   responsiveVoice.speak(backwardsText, 'UK English Male', options);
 }
-*/
-
-// addButton(label)
-//
-// Creates a button using jQuery UI on a div with the label specified
-// and adds it to the page, returning the button as well
-function addButton(label) {
-  // Create a div with jQuery using HTML
-  let $button = $('<div></div>');
-  // Give it the guess class
-  $button.addClass("guess");
-  // Set the text in the div to our label
-  $button.text(label);
-  // Turn the div into a button using jQuery UI's .button() method
-  $button.button();
-  // Listen for a click on the button which means the user has guessed
-  $button.on('click', clickGuess);
-  // Finally, add the button to the page so we can see it
-  $('body').append($button);
-  // Return the button
-  return $button;
-}
 
 // handleGuess()
 //
@@ -200,12 +159,7 @@ function handleGuess(name) {
     $(this).effect('shake');
     // Remove all the buttons
     $('.guess').remove();
-    score = score + 1;
-    $("#scoreVal").text(score);
-    // Start a new round
-    setTimeout(newRound, 1000);
-
-
+    // setTimeout(newRound, 1000);
   }
   else {
     // Otherwise shake all the guess buttons
@@ -220,8 +174,8 @@ function clickGuess() {
     // Remove all the buttons
     $('.guess').remove();
     // Set the score
-    score = score + 1;
-    $("#scoreVal").text(score);
+    // score = score + 1;
+    // $("#scoreVal").text(score);
     // Start a new round
     setTimeout(newRound, 1000);
   }

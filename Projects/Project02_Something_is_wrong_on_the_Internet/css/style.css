@@ -1,11 +1,11 @@
 body {
   height: 100%;
   width: 100%;
-  background-color: turquoise;
   font-family: Courier, monospace;
-
+  background-color: black;
+  color: white;
 }
-
+/*
 .score{
   font-size: 20px;
   font-weight: bold;
@@ -13,7 +13,7 @@ body {
   margin-left: 125px;
   color: white;
   text-decoration: none;
-}
+} */
 .instructions{
   font-style: normal;
   font-family:Georgia;
@@ -26,15 +26,36 @@ body {
   text-align: center;
 }
 #wifiLogo {
+  position: absolute;
   align-items: center;
-  height: 150%;
-  width: 150%;
+  height: 480px;
+  width: 480px;
 }
+#loading {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  height: 150px;
+  width: 150px;
+}
+/* "Instructions" button style from jQuery UI*/
+#opener{
+  font-size: 18px;
+  color: white;
+  background-color: #7B9439; /*Green*/
+  align-content: center;
+  padding: 15px 40px;
+  cursor: grab;
+  border-radius: 12px;
+  margin-left: 125px;
+}
+/* Popup of list of instructions from jQuery UI */
 #dialog{
+  position: relative;
   font-family: Courier, monospace;
   font-size: 15px;
-  background: rgb(150, 101, 68);
+  background: rgb(148, 148, 148);
   border: 2px solid #b5b5b5;
   color: #FFFFFF;
-  cursor:
+  cursor: grab;
 }
