@@ -33,7 +33,6 @@ let gameState = 1; //game is active
 // Commands that annyang should listen to
 let commands = {
   'Internet on': wifiOn,
-  'Internet off': wifiOff,
   'Say it again': sayAgain,
   'Play the coconut song': function() {
     handleVideo("coconut")
@@ -50,8 +49,7 @@ let commands = {
   'Play the hamster song': function() {
     handleVideo("hamster")
   },
-  'Open Book shelf': bookShelf,
-  'Read me the little prince': readStory
+  'Internet off': wifiOff,
 };
 
 
@@ -64,15 +62,16 @@ $(document).ready(setup);
 function setup() {
   $(".Youtube").hide();
   $("#loading").hide();
-  $(".bookShelf").hide();
+  $("#bookShelf").hide();
+  $(".books").hide();
   if (annyang) {
     annyang.addCommands(commands);
     annyang.start();
     // annyang.debug();
   }
   document.getElementById('wifiLogo').style.display = "block";
-  responsiveVoice.speak("Say 'Internet On' to make window load. Say 'Say it again' to repeat instructions. Say 'Play [Insert video title]' to play the video. To open book shelf say 'Open Book shelf'. Say 'Read me [Insert story title]' to read a story. Say 'Internet Off' to make everything stop.", 'UK English Male', {
-  pitch: 2});
+  responsiveVoice.speak("Say 'Internet On' to make window load. Say 'Say it again' to repeat instructions. Say 'Play [Insert video title]' to play the video. Say 'Internet Off' to make everything stop.", 'UK English Male', {
+  pitch: 1, rate:1.5 });
 
 }
 // wifiOn()
@@ -85,7 +84,8 @@ function wifiOn() {
     // setup();
     $("#loading").show();
     $("#wifiLogo").hide();
-    $(".bookShelf").hide();
+    $("#bookShelf").hide();
+    $(".books").hide();
     $("#loading").on("click", videosAppear);
     $("#dialog").show();
   }
@@ -99,7 +99,10 @@ function videosAppear() {
     gameState = 3;
     $(".Youtube").show();
     $("#loading").hide();
-    $(".bookShelf").hide();
+    $("#bookShelf").hide();
+    $(".books").hide();
+    $("#bookShelf").show();
+    $("#bookShelf").on("click", bookShelf);
   }
 }
 // handleVideo()
@@ -110,9 +113,10 @@ function videosAppear() {
 function handleVideo(name) {
   if (gameState === 3) {
     gameState = 4;
+    $("#bookShelf").show();
     $("#loading").hide();
     $("#wifiLogo").hide();
-    $(".bookShelf").hide();
+    // $("#bookShelf").on("click", bookShelf);
   }
   if (name === "coconut") {
     document.getElementById("coconut").play();
@@ -138,8 +142,18 @@ function bookShelf(){
     gameState = 5;
     $("#loading").hide();
     $("#wifiLogo").hide();
+    $("#bookShelf").show();
+    $(".books").show();
   }
-  document.getElementByClass('.bookShelf').style.display = "block";
+  $( function() {
+    $( "#accordion" ).accordion();
+  } );
+}
+
+function handleBooks(name){
+  $( function() {
+    $( "#accordion" ).accordion();
+  } );
 }
 // wifiOff()
 //
@@ -147,6 +161,7 @@ function bookShelf(){
 // which returns to gameState 1 with the wifi signal animation.
 function wifiOff() {
   if (gameState === 5) {
+    gameState=1;
     setup()
   }
 }
