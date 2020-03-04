@@ -6,20 +6,28 @@ Something is wrong on the Internet
 By: Carole Chao
 
 DESCRIPTION
-Player has uses responsiveVoice and Annyang to open the different pages, from
-turning the wifi on, load page, show the instructions and
+Player uses responsiveVoice and keys to open different game states.
+Each game state shows different elements (images, videos and texts).
+Instead of doing the action of turning Internet on and start the program,
+the player says vocal commands and creates an illusion that the computer
+is automatic. The user interacts less with the computer (audiobook) with the
+intructions button in all the gameState to remind the player.
 
 Uses:
 
 ResponsiveVoice
 https://responsivevoice.org/
+Annyang
+https://www.talater.com/annyang/
+jQuery UI
+https://jqueryui.com/
+https://api.jquery.com/
 
 
 ******************/
 
 // A variable to add the start screen and ending screen.
 let gameState = 1; //game is active
-// Press E to exit
 
 // A variable to store each element
 let $wifiLogo;
@@ -27,22 +35,20 @@ let $loading;
 let $emptyPhone;
 
 // An array of Videos that we use to create our random video generator
-let $videos = [
-  "coconut",
-  "peanut butter",
-  "crab rave",
-  "duck",
-  "conga"
+let videos = [
+  "The coconut song",
+  "Peanut butter jelly time",
+  "Crab rave",
+  "The duck song ",
+  "The hamster song"
 ];
 
 // We need to track the correct button for each round
-// let $correctButton;
+let $correctButton;
 // We also track the set of buttons
-// let buttons = [];
+let buttons = [];
 // How many possible answers there are per round
-// const NUM_OPTIONS = 5;
-// Variable to track score
-// let score = 0;
+const NUM_OPTIONS = 2;
 
 // Commands that annyang should listen to
 let commands = {
@@ -50,7 +56,6 @@ let commands = {
   'Internet off': wifiOff,
   'Say it again': sayAgain
   // 'Play *name': handleVideo,
-  //'I think it is *name': handleGuess
   // 'Read me *story': readStory
 };
 
@@ -59,49 +64,116 @@ $(document).ready(setup);
 
 // setup()
 //
-// Start game, make annyang follow the commands and add annyang to
-//start listening.
+// Start page, make annyang follow the commands, make annyang start listening,
+// and show the wifi signal animation and instructions button.
 function setup() {
   $(".Youtube").hide();
   $("#loading").hide();
-  $("#dialog").show();
   if (annyang){
     annyang.addCommands(commands);
     annyang.start();
     // annyang.debug();
   }
   document.getElementById('wifiLogo').style.display = "block";
+  // document.getElementById("dialog").style.display = "block";
 }
-
-
+// wifiOn()
+//
+// Player says "Internet on" and switch to gameState 2.
+// Only show GIF Image of a loading page appears and instructions button.
 function wifiOn(){
   if (gameState===1){
     gameState=2;
     // setup();
     $("#loading").show();
     $("#wifiLogo").hide();
-    $("button").hide();
     console.log("wifiOn");
-    $("#loading").on("click", videoAppear);
+    $("#loading").on("click", videosAppear);
+    $("#dialog").show();
   }
 }
-function videoAppear(){
+// videosAppear()
+//
+// Player clicks on the loading image GIF and make the YouTube videos appear.
+//
+function videosAppear(){
   if (gameState===2){
     gameState=3;
     $(".Youtube").show();
     $("#loading").hide();
   }
 }
+// handleVideo()
+//
+// Checks whether this was the correct video (button) and
+// if so starts a new round
+// if not indicates it was incorrect
+function handleVideo(name){
+  if (gameState===3){
+    gameState=4;
+    $("#loading").hide();
+    $("#wifiLogo").hide();
+    
+    // console.log("NAME:: "+name);
+    // if (name.toLowerCase() == $correctButton.text().toLowerCase()){
+    //   $(this).effect('shake');
+    //   // Remove all the buttons
+    //   $('.video').remove();
+    // }
+    // else {
+    //   // Otherwise shake all the video buttons
+    //   $('.video').effect('shake');
+    //   // And say the correct animal again to "help" them
+    //   sayBackwards($correctButton.text());
+    // }
+  }
+}
 
+// readStory()
+//
+//
+function readStory(){
+  if (gameState===4){
+    gameState=5;
+    $("#loading").hide();
+    $("#wifiLogo").hide();
+
+    /*var settings = {
+    continuous:true, // Don't stop never because i have https connection
+    onResult:function(text){
+        console.log(text);
+    },
+    onStart:function(){
+        console.log("Dictation started by the user");
+    },
+    onEnd:function(){
+        alert("Dictation stopped by the user");
+    }
+};
+
+var UserDictation = artyom.newDictation(settings);
+
+// Start listening
+UserDictation.start();
+
+// To stop
+//UserDictation.stop();
+*/
+  }
+}
+// wifiOff()
+//
+// When player is done interacting with the page, they say "Internet off"
+// which returns to gameState 1 with the wifi signal animation.
 function wifiOff(){
   if (gameState===5){
-    restartPage()
+    setup()
   }
 }
 
 // Code from https://jqueryui.com/dialog/#animated:
  $(function() {
-   $( "#dialog" ).dialog({
+   $("#dialog").dialog({
      autoOpen: false,
      show: {
        effect: "blind",
@@ -112,7 +184,7 @@ function wifiOff(){
        duration: 1000
      }
    });
-   $( "#opener" ).on( "click", function() {
+   $("#opener").on( "click", function() {
      $( "#dialog" ).dialog( "open" );
    });
  } );
@@ -120,7 +192,6 @@ function wifiOff(){
 function sayAgain(){
     sayBackwards($correctButton.text());
 }
-
 
 // sayBackwards(text)
 //
@@ -147,59 +218,39 @@ function sayBackwards(text) {
   // and the options we just specified.
   responsiveVoice.speak(backwardsText, 'UK English Male', options);
 }
-
-// handleGuess()
+/*
+// addButton(label)
 //
-// Checks whether this was the correct guess (button) and
-// if so starts a new round
-// if not indicates it was incorrect
-function handleGuess(name) {
-  console.log("NAME:: "+name);
-  if (name.toLowerCase() == $correctButton.text().toLowerCase()){
-    $(this).effect('shake');
-    // Remove all the buttons
-    $('.guess').remove();
-    // setTimeout(newRound, 1000);
-  }
-  else {
-    // Otherwise shake all the guess buttons
-    $('.guess').effect('shake');
-    // And say the correct animal again to "help" them
-    sayBackwards($correctButton.text());
-  }
+// Creates a button using jQuery UI on a div with the label specified
+// and adds it to the page, returning the button as well
+function addButton(label) {
+  // Create a div with jQuery using HTML
+  let $button = $('<div></div>');
+  // Give it the video class
+  $button.addClass("video");
+  // Set the text in the div to our label
+  $button.text(label);
+  // Turn the div into a button using jQuery UI's .button() method
+  $button.button();
+  // Listen for a click on the button which means the user has guessed
+  $button.on('click', clickVideo);
+  // Finally, add the button to the page so we can see it
+  $('body').append($button);
+  // Return the button
+  return $button;
 }
-function clickGuess() {
+
+function clickVideo() {
   if ($(this).text().toLowerCase() == $correctButton.text().toLowerCase()){
     $(this).effect('shake');
     // Remove all the buttons
-    $('.guess').remove();
-    // Set the score
-    // score = score + 1;
-    // $("#scoreVal").text(score);
-    // Start a new round
-    setTimeout(newRound, 1000);
+    $('.video').remove();
   }
   else {
     // Otherwise shake all the guess buttons
-    $('.guess').effect('shake');
+    $('.video').effect('shake');
     // And say the correct animal again to "help" them
     sayBackwards($correctButton.text());
   }
 }
-
-function giveUpGuess(){
-  // If they say "I give up", the correct answer should appear.
-    $correctButton.effect('shake');
-}
-
-// getRandomElement(array)
-//
-// Returns a random element from the provided array
-function getRandomElement(array) {
-  let element = array[Math.floor(Math.random() * array.length)];
-  return element;
-}
-function resetRound(){
-  $('.guess').remove();
-  newRound();
-}
+*/
