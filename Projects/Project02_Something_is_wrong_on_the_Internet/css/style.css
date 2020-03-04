@@ -56,3 +56,12 @@ body {
   color: #FFFFFF;
   cursor: grab;
 }
+.Youtube{
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+.videoContainer{
+  margin-left: 25%;
+
+}

@@ -29,33 +29,17 @@ https://api.jquery.com/
 // A variable to add the start screen and ending screen.
 let gameState = 1; //game is active
 
-// A variable to store each element
-let $wifiLogo;
-let $loading;
-let $emptyPhone;
-
-// An array of Videos that we use to create our random video generator
-let videos = [
-  "The coconut song",
-  "Peanut butter jelly time",
-  "Crab rave",
-  "The duck song ",
-  "The hamster song"
-];
-
-// We need to track the correct button for each round
-let $correctButton;
-// We also track the set of buttons
-let buttons = [];
-// How many possible answers there are per round
-const NUM_OPTIONS = 2;
 
 // Commands that annyang should listen to
 let commands = {
   'Internet on': wifiOn,
   'Internet off': wifiOff,
-  'Say it again': sayAgain
-  // 'Play *name': handleVideo,
+  'Say it again': sayAgain,
+  'Play the coconut song': function(){handleVideo("coconut")},
+  'Play peanut butter jelly time': function(){handleVideo("peanut")},
+  'Play crab rave': function(){handleVideo("crab")},
+  'Play the duck song': function(){handleVideo("duck")},
+  'Play the hamster song': function(){handleVideo("hamster")}
   // 'Read me *story': readStory
 };
 
@@ -75,7 +59,9 @@ function setup() {
     // annyang.debug();
   }
   document.getElementById('wifiLogo').style.display = "block";
-  // document.getElementById("dialog").style.display = "block";
+  responsiveVoice.speak(backwardsText, 'UK English Male', options);
+  responsiveVoice.speak("Say 'Turn Wifi On' to make window load. Say 'Say it again' to repeat instructions. Say 'Play [Insert video title]' to play the Youtube video. Say 'Read me [Insert story title]' to make the ResponsiveVoice read a story. Say 'Turn Wifi Off' to make everything stop."
+  , 'UK English Male', {pitch: 2});
 }
 // wifiOn()
 //
@@ -113,19 +99,27 @@ function handleVideo(name){
     gameState=4;
     $("#loading").hide();
     $("#wifiLogo").hide();
-    
-    // console.log("NAME:: "+name);
-    // if (name.toLowerCase() == $correctButton.text().toLowerCase()){
-    //   $(this).effect('shake');
-    //   // Remove all the buttons
-    //   $('.video').remove();
-    // }
-    // else {
-    //   // Otherwise shake all the video buttons
-    //   $('.video').effect('shake');
-    //   // And say the correct animal again to "help" them
-    //   sayBackwards($correctButton.text());
-    // }
+
+  }
+  if (name==="coconut"){
+    console.log("coconut");
+    document.getElementById("coconut").play();
+  }
+  if (name==="peanut"){
+    console.log("peanut");
+    document.getElementById("peanut").play();
+  }
+  if (name==="crab"){
+    console.log("crab");
+    document.getElementById("crab").play();
+  }
+  if (name==="duck"){
+    console.log("duck");
+    document.getElementById("duck").play();
+  }
+  if (name==="hamster"){
+    console.log("hamster");
+    document.getElementById("hamster").play();
   }
 }
 
@@ -218,39 +212,3 @@ function sayBackwards(text) {
   // and the options we just specified.
   responsiveVoice.speak(backwardsText, 'UK English Male', options);
 }
-/*
-// addButton(label)
-//
-// Creates a button using jQuery UI on a div with the label specified
-// and adds it to the page, returning the button as well
-function addButton(label) {
-  // Create a div with jQuery using HTML
-  let $button = $('<div></div>');
-  // Give it the video class
-  $button.addClass("video");
-  // Set the text in the div to our label
-  $button.text(label);
-  // Turn the div into a button using jQuery UI's .button() method
-  $button.button();
-  // Listen for a click on the button which means the user has guessed
-  $button.on('click', clickVideo);
-  // Finally, add the button to the page so we can see it
-  $('body').append($button);
-  // Return the button
-  return $button;
-}
-
-function clickVideo() {
-  if ($(this).text().toLowerCase() == $correctButton.text().toLowerCase()){
-    $(this).effect('shake');
-    // Remove all the buttons
-    $('.video').remove();
-  }
-  else {
-    // Otherwise shake all the guess buttons
-    $('.video').effect('shake');
-    // And say the correct animal again to "help" them
-    sayBackwards($correctButton.text());
-  }
-}
-*/

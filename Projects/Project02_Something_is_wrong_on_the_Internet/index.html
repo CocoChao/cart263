@@ -45,10 +45,10 @@
       <p>
         <ul>
           <li>Say "Turn Wifi On" to make window load.</li>
-          <li>Say "Turn Wifi Off" to make everything stop.</li>
           <li>Say "Say it again" to repeat instructions.</li>
-          <li>Say "Read me [Insert story title]" to make the ResponsiveVoice read a story.</li>
           <li>Say "Play [Insert video title]" to play the Youtube video.</li>
+          <li>Say "Read me [Insert story title]" to make the ResponsiveVoice read a story.</li>
+          <li>Say "Turn Wifi Off" to make everything stop.</li>
         </ul>
       </p>
     </div>
@@ -56,35 +56,30 @@
       id="opener"> Open Instructions
     </button>
     <div class="Youtube">
-      <div> The Coconut Song:
-        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/w0AOGeqOnFY"
-          frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+      <div class="videoContainer"> <p> The Coconut Song: </p>
+        <video width="560" id="coconut" controls>
+          <source src="assets/videos/The_Coconut_Song.mp4", type="video/mp4">
+        </video>
       </div>
-      <div> Peanut Butter Jelly Time:
-        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eRBOgtp0Hac"
-        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-        </iframe>
+      <div class="videoContainer"> <p> Peanut Butter Jelly Time: </p>
+        <video width="560" id="peanut" controls>
+          <source src="assets/videos/Peanut_Butter_Jelly_Time.mp4", type="video/mp4">
+        </video>
       </div>
-      <div> Crab rave:
-        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/cE0wfjsybIQ"
-          frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+      <div class="videoContainer"> <p> Crab rave: </p>
+        <video width="560" id="crab" controls>
+          <source src="assets/videos/Noisestorm_Crab_Rave.mp4", type="video/mp4">
+        </video>
       </div>
-      <div> The Duck Song:
-        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/MtN1YnoL46Q"
-          frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+      <div class="videoContainer"> <p> The Duck Song: </p>
+        <video width="560" id="duck" controls>
+          <source src="assets/videos/The_Duck_Song.mp4", type="video/mp4">
+        </video>
       </div>
-      <div> The hamster song:
-        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/LBjUh4bYF8w"
-          frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+      <div class="videoContainer"> <p> The hamster song: </p>
+        <video width="560" id="hamster" controls>
+          <source src="assets/videos/The_hamster_song.mp4", type="video/mp4">
+        </video>
       </div>
     </div>
 
