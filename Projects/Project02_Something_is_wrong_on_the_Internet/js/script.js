@@ -35,12 +35,23 @@ let commands = {
   'Internet on': wifiOn,
   'Internet off': wifiOff,
   'Say it again': sayAgain,
-  'Play the coconut song': function(){handleVideo("coconut")},
-  'Play peanut butter jelly time': function(){handleVideo("peanut")},
-  'Play crab rave': function(){handleVideo("crab")},
-  'Play the duck song': function(){handleVideo("duck")},
-  'Play the hamster song': function(){handleVideo("hamster")}
-  // 'Read me *story': readStory
+  'Play the coconut song': function() {
+    handleVideo("coconut")
+  },
+  'Play peanut butter jelly time': function() {
+    handleVideo("peanut")
+  },
+  'Play crab rave': function() {
+    handleVideo("crab")
+  },
+  'Play the duck song': function() {
+    handleVideo("duck")
+  },
+  'Play the hamster song': function() {
+    handleVideo("hamster")
+  },
+  'Open Book shelf': bookShelf,
+  'Read me the little prince': readStory
 };
 
 
@@ -53,27 +64,28 @@ $(document).ready(setup);
 function setup() {
   $(".Youtube").hide();
   $("#loading").hide();
-  if (annyang){
+  $(".bookShelf").hide();
+  if (annyang) {
     annyang.addCommands(commands);
     annyang.start();
     // annyang.debug();
   }
   document.getElementById('wifiLogo').style.display = "block";
-  responsiveVoice.speak(backwardsText, 'UK English Male', options);
-  responsiveVoice.speak("Say 'Turn Wifi On' to make window load. Say 'Say it again' to repeat instructions. Say 'Play [Insert video title]' to play the Youtube video. Say 'Read me [Insert story title]' to make the ResponsiveVoice read a story. Say 'Turn Wifi Off' to make everything stop."
-  , 'UK English Male', {pitch: 2});
+  responsiveVoice.speak("Say 'Internet On' to make window load. Say 'Say it again' to repeat instructions. Say 'Play [Insert video title]' to play the video. To open book shelf say 'Open Book shelf'. Say 'Read me [Insert story title]' to read a story. Say 'Internet Off' to make everything stop.", 'UK English Male', {
+  pitch: 2});
+
 }
 // wifiOn()
 //
 // Player says "Internet on" and switch to gameState 2.
 // Only show GIF Image of a loading page appears and instructions button.
-function wifiOn(){
-  if (gameState===1){
-    gameState=2;
+function wifiOn() {
+  if (gameState === 1) {
+    gameState = 2;
     // setup();
     $("#loading").show();
     $("#wifiLogo").hide();
-    console.log("wifiOn");
+    $(".bookShelf").hide();
     $("#loading").on("click", videosAppear);
     $("#dialog").show();
   }
@@ -82,11 +94,12 @@ function wifiOn(){
 //
 // Player clicks on the loading image GIF and make the YouTube videos appear.
 //
-function videosAppear(){
-  if (gameState===2){
-    gameState=3;
+function videosAppear() {
+  if (gameState === 2) {
+    gameState = 3;
     $(".Youtube").show();
     $("#loading").hide();
+    $(".bookShelf").hide();
   }
 }
 // handleVideo()
@@ -94,97 +107,70 @@ function videosAppear(){
 // Checks whether this was the correct video (button) and
 // if so starts a new round
 // if not indicates it was incorrect
-function handleVideo(name){
-  if (gameState===3){
-    gameState=4;
+function handleVideo(name) {
+  if (gameState === 3) {
+    gameState = 4;
     $("#loading").hide();
     $("#wifiLogo").hide();
-
+    $(".bookShelf").hide();
   }
-  if (name==="coconut"){
-    console.log("coconut");
+  if (name === "coconut") {
     document.getElementById("coconut").play();
   }
-  if (name==="peanut"){
-    console.log("peanut");
+  if (name === "peanut") {
     document.getElementById("peanut").play();
   }
-  if (name==="crab"){
-    console.log("crab");
+  if (name === "crab") {
     document.getElementById("crab").play();
   }
-  if (name==="duck"){
-    console.log("duck");
+  if (name === "duck") {
     document.getElementById("duck").play();
   }
-  if (name==="hamster"){
-    console.log("hamster");
+  if (name === "hamster") {
     document.getElementById("hamster").play();
   }
 }
-
-// readStory()
+// bookShelf()
 //
 //
-function readStory(){
-  if (gameState===4){
-    gameState=5;
+function bookShelf(){
+  if(gameState===4){
+    gameState = 5;
     $("#loading").hide();
     $("#wifiLogo").hide();
-
-    /*var settings = {
-    continuous:true, // Don't stop never because i have https connection
-    onResult:function(text){
-        console.log(text);
-    },
-    onStart:function(){
-        console.log("Dictation started by the user");
-    },
-    onEnd:function(){
-        alert("Dictation stopped by the user");
-    }
-};
-
-var UserDictation = artyom.newDictation(settings);
-
-// Start listening
-UserDictation.start();
-
-// To stop
-//UserDictation.stop();
-*/
   }
+  document.getElementByClass('.bookShelf').style.display = "block";
 }
 // wifiOff()
 //
 // When player is done interacting with the page, they say "Internet off"
 // which returns to gameState 1 with the wifi signal animation.
-function wifiOff(){
-  if (gameState===5){
+function wifiOff() {
+  if (gameState === 5) {
     setup()
   }
 }
 
 // Code from https://jqueryui.com/dialog/#animated:
- $(function() {
-   $("#dialog").dialog({
-     autoOpen: false,
-     show: {
-       effect: "blind",
-       duration: 1000
-     },
-     hide: {
-       effect: "explode",
-       duration: 1000
-     }
-   });
-   $("#opener").on( "click", function() {
-     $( "#dialog" ).dialog( "open" );
-   });
- } );
+$(function() {
+  $("#dialog").dialog({
+    autoOpen: false,
+    show: {
+      effect: "blind",
+      duration: 1000
+    },
+    hide: {
+      effect: "explode",
+      duration: 1000
+    }
+  });
+  $("#opener").on("click", function() {
+    $("#dialog").dialog("open");
+  });
+});
 
-function sayAgain(){
-    sayBackwards($correctButton.text());
+function sayAgain() {
+  sayBackwards("Say 'Turn Wifi On' to make window load. Say 'Say it again' to repeat instructions. Say 'Play [Insert video title]' to play the Youtube video. Say 'Read me [Insert story title]' to make the ResponsiveVoice read a story. Say 'Turn Wifi Off' to make everything stop.", 'UK English Male');
 }
 
 // sayBackwards(text)
