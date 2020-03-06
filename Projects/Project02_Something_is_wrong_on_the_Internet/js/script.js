@@ -66,6 +66,7 @@ function setup() {
   $(".books").hide();
   $(".puzzleContainer").hide();
   $(".pieces").hide();
+  $("#next").hide();
   if (annyang) {
     annyang.addCommands(commands);
     annyang.start();
@@ -92,6 +93,7 @@ function wifiOn() {
     $("#dialog").show();
     $(".puzzleContainer").hide();
     $(".pieces").hide();
+    $("#next").hide();
   }
 }
 // videosAppear()
@@ -119,90 +121,55 @@ function videosAppear() {
     $("#pieceFour").draggable();
     $("#pieceFive").draggable();
     $("#pieceSix").draggable();
-    $("#boxOne").droppable({
-      accept: "#pieceOne",
-      drop: function(event, ui) {
+    $("#next").show().on("click", bookShelf);
+    $("#boxOne").droppable({accept: "#pieceOne", drop: function(event, ui) {
     var $this = $(this);
-    ui.draggable.position({
-      my: "center",
-      at: "center",
-      of: $this,
-      using: function(pos) {
+    ui.draggable.position({ my: "center", at: "center", of: $this, using: function(pos) {
         $(this).animate(pos, 200, "linear");
       }
     });
     $( "#pieceOne" ).droppable("disable");
   }
   });
-    $("#boxTwo").droppable({
-      accept: "#pieceTwo",
-      drop: function(event, ui) {
+    $("#boxTwo").droppable({accept: "#pieceTwo", drop: function(event, ui) {
     var $this = $(this);
-    ui.draggable.position({
-      my: "center",
-      at: "center",
-      of: $this,
-      using: function(pos) {
+    ui.draggable.position({my: "center", at: "center", of: $this, using: function(pos) {
         $(this).animate(pos, 200, "linear");
       }
     });
     $( "#pieceTwo" ).droppable("disable");
     }
     });
-    $("#boxThree").droppable({
-      accept: "#pieceThree",
-      drop: function(event, ui) {
+    $("#boxThree").droppable({ accept: "#pieceThree", drop: function(event, ui) {
     var $this = $(this);
-    ui.draggable.position({
-      my: "center",
-      at: "center",
-      of: $this,
-      using: function(pos) {
+    ui.draggable.position({ my: "center", at: "center", of: $this, using: function(pos) {
         $(this).animate(pos, 200, "linear");
       }
     });
     $( "#pieceThree" ).droppable("disable");
     }
     });
-    $("#boxFour").droppable({
-      accept: "#pieceFour",
-      drop: function(event, ui) {
+    $("#boxFour").droppable({ accept: "#pieceFour", drop: function(event, ui) {
     var $this = $(this);
-    ui.draggable.position({
-      my: "center",
-      at: "center",
-      of: $this,
-      using: function(pos) {
+    ui.draggable.position({ my: "center", at: "center", of: $this, using: function(pos) {
         $(this).animate(pos, 200, "linear");
       }
     });
     $( "#pieceFour" ).droppable("disable");
     }
     });
-    $("#boxFive").droppable({
-      accept: "#pieceFive",
-      drop: function(event, ui) {
+    $("#boxFive").droppable({ accept: "#pieceFive", drop: function(event, ui) {
     var $this = $(this);
-    ui.draggable.position({
-      my: "center",
-      at: "center",
-      of: $this,
-      using: function(pos) {
+    ui.draggable.position({ my: "center", at: "center", of: $this, using: function(pos) {
         $(this).animate(pos, 200, "linear");
       }
     });
     $( "#pieceFive" ).droppable("disable");
     }
     });
-    $("#boxSix").droppable({
-      accept: "#pieceSix",
-      drop: function(event, ui) {
+    $("#boxSix").droppable({ accept: "#pieceSix", drop: function(event, ui) {
     var $this = $(this);
-    ui.draggable.position({
-      my: "center",
-      at: "center",
-      of: $this,
-      using: function(pos) {
+    ui.draggable.position({ my: "center", at: "center", of: $this, using: function(pos) {
         $(this).animate(pos, 200, "linear");
       }
     });
@@ -277,7 +244,7 @@ $(function() {
       duration: 1000
     },
     hide: {
-      effect: "explode",
+      effect: "fade",
       duration: 1000
     }
   });

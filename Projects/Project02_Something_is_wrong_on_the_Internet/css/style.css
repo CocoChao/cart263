@@ -26,20 +26,18 @@ body {
 }
 #loading {
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 43%;
   height: 150px;
   width: 150px;
   cursor: grab;
 }
 /* "Instructions" button style from jQuery UI*/
 #opener{
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 40%;
   align-items: center;
   font-size: 18px;
   color: black;
-  background-color: #b5b5b5; /*Green*/
+  background-color: #b5b5b5;
   padding: 15px 40px;
   cursor: grab;
   border-radius: 12px;
@@ -90,36 +88,42 @@ body {
   float: left;
   display: block;
   margin: 10px 10px 10px 0;
+  cursor: grab;
 }
 #pieceTwo{
   border: white;
   float: left;
   display: block;
   margin: 10px 10px 10px 0;
+  cursor: grab;
 }
 #pieceThree{
   border: white;
   float: left;
   display: block;
   margin: 10px 10px 10px 0;
+  cursor: grab;
 }
 #pieceFour{
   border: white;
   float: left;
   display: block;
   margin: 10px 10px 10px 0;
+  cursor: grab;
 }
 #pieceFive{
   border: white;
   float: left;
   display: block;
   margin: 10px 10px 10px 0;
+  cursor: grab;
 }
 #pieceSix{
   border: white;
   float: left;
   display: block;
   margin: 10px 10px 10px 0;
+  cursor: grab;
 }
 .puzzleContainer{
   background-color: ##b3b3b3;
@@ -128,4 +132,15 @@ body {
   grid-template-columns: auto auto;
   width: 323px;
   height: 245px;
+}
+#next{
+  margin-left: auto;
+  font-size: 18px;
+  color: black;
+  background-color: #b5b5b5;
+  padding: 15px 40px;
+  cursor: grab;
+  border-radius: 10px;
+  display: block;
+  float: right;
 }
