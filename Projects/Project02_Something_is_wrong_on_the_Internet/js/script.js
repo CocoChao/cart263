@@ -84,7 +84,6 @@ function setup() {
 function wifiOn() {
   if (gameState === 1) {
     gameState = 2;
-    // setup();
     $("#loading").show();
     $("#wifiLogo").hide();
     $("#bookShelf").hide();
@@ -105,14 +104,10 @@ function videosAppear() {
     gameState = 3;
     $(".Youtube").show();
     $("#loading").hide();
-    $("#bookShelf").hide();
     $(".books").hide();
     $("#bookShelf").show().resizable({
       aspectRatio: 4 / 5
     })
-    $(".puzzleContainer").show();
-    $(".pieces").show();
-
     $(".puzzleContainer").show();
     $(".pieces").show();
     $("#pieceOne").draggable();
@@ -128,7 +123,7 @@ function videosAppear() {
         $(this).animate(pos, 200, "linear");
       }
     });
-    $( "#pieceOne" ).droppable("disable");
+    $("#pieceOne").droppable("disable");
   }
   });
     $("#boxTwo").droppable({accept: "#pieceTwo", drop: function(event, ui) {
@@ -137,7 +132,7 @@ function videosAppear() {
         $(this).animate(pos, 200, "linear");
       }
     });
-    $( "#pieceTwo" ).droppable("disable");
+    $("#pieceTwo").droppable("disable");
     }
     });
     $("#boxThree").droppable({ accept: "#pieceThree", drop: function(event, ui) {
@@ -146,7 +141,7 @@ function videosAppear() {
         $(this).animate(pos, 200, "linear");
       }
     });
-    $( "#pieceThree" ).droppable("disable");
+    $("#pieceThree").droppable("disable");
     }
     });
     $("#boxFour").droppable({ accept: "#pieceFour", drop: function(event, ui) {
@@ -155,7 +150,7 @@ function videosAppear() {
         $(this).animate(pos, 200, "linear");
       }
     });
-    $( "#pieceFour" ).droppable("disable");
+    $("#pieceFour").droppable("disable");
     }
     });
     $("#boxFive").droppable({ accept: "#pieceFive", drop: function(event, ui) {
@@ -164,7 +159,7 @@ function videosAppear() {
         $(this).animate(pos, 200, "linear");
       }
     });
-    $( "#pieceFive" ).droppable("disable");
+    $("#pieceFive").droppable("disable");
     }
     });
     $("#boxSix").droppable({ accept: "#pieceSix", drop: function(event, ui) {
@@ -210,20 +205,23 @@ function handleVideo(name) {
 //
 //
 function bookShelf(){
-  if(gameState===4){
+  if(gameState===3){
     gameState = 5;
     $("#loading").hide();
     $("#wifiLogo").hide();
     $("#bookShelf").show();
     $(".books").show();
+    $(".Youtube").hide();
+    $(".puzzleContainer").hide();
+    $(".pieces").hide();
+    $("#dialog").show();
+    $("#next").hide();
+    $( function() {
+      $("#accordion").accordion();
+    } );
   }
 }
 
-function handleBooks(name){
-  $( function() {
-    $( "#accordion" ).accordion();
-  } );
-}
 // wifiOff()
 //
 // When player is done interacting with the page, they say "Internet off"
