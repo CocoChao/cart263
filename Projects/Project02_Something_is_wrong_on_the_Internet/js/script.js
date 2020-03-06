@@ -216,9 +216,8 @@ function bookShelf(){
     $(".pieces").hide();
     $("#dialog").show();
     $("#next").hide();
-    $( function() {
-      $("#accordion").accordion();
-    } );
+    $("#accordionOne").accordion();
+    $("#accordionTwo").accordion();
   }
 }
 
