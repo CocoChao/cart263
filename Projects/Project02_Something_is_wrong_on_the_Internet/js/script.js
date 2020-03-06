@@ -6,12 +6,11 @@ Something is wrong on the Internet
 By: Carole Chao
 
 DESCRIPTION
-Player uses responsiveVoice and keys to open different game states.
+Player uses responsiveVoice and click buttons to open different game states.
 Each game state shows different elements (images, videos and texts).
-Instead of doing the action of turning Internet on and start the program,
-the player says vocal commands and creates an illusion that the computer
-is automatic. The user interacts less with the computer (audiobook) with the
-intructions button in all the gameState to remind the player.
+Instead of doing the action of turning Internet on and start the program manually,
+the player says vocal commands and it creates an illusion that the computer
+is automatic. The user is able to play puzzle, listen to music and read stories.
 
 Uses:
 
@@ -58,7 +57,7 @@ $(document).ready(setup);
 // setup()
 //
 // Start page, make annyang follow the commands, make annyang start listening,
-// and show the wifi signal animation and instructions button.
+// make responsiveVoice read the instructions, and show the wifi signal animation and instructions button.
 function setup() {
   $(".Youtube").hide();
   $("#loading").hide();
@@ -79,8 +78,7 @@ function setup() {
 }
 // wifiOn()
 //
-// Player says "Internet on" and switch to gameState 2.
-// Only show GIF Image of a loading page appears and instructions button.
+// Player says "Internet on" and GIF Image of a loading page and instructions button appears .
 function wifiOn() {
   if (gameState === 1) {
     gameState = 2;
@@ -97,8 +95,10 @@ function wifiOn() {
 }
 // videosAppear()
 //
-// Player clicks on the loading image GIF and make the YouTube videos appear.
-//
+// Player clicks on the loading image GIF and make the YouTube videos, puzzle, instruction button
+// and "next page" button appear.
+// Player drags and drops puzzle pieces in random boxes to complete the mix&matched incorrect puzzle.
+// Player also has the possibility to click on "next page" without completing the puzzle.
 function videosAppear() {
   if (gameState === 2) {
     gameState = 3;
@@ -117,34 +117,26 @@ function videosAppear() {
     $("#pieceFive").draggable();
     $("#pieceSix").draggable();
     $("#next").show().on("click", bookShelf);
-    $("#boxOne").droppable({accept: "#pieceOne", drop: function(event, ui) {
+
+    $("#boxOne").droppable({accept: "#pieceTwo", drop: function(event, ui) {
     var $this = $(this);
     ui.draggable.position({ my: "center", at: "center", of: $this, using: function(pos) {
-        $(this).animate(pos, 200, "linear");
-      }
-    });
-    $("#pieceOne").droppable("disable");
-  }
-  });
-    $("#boxTwo").droppable({accept: "#pieceTwo", drop: function(event, ui) {
-    var $this = $(this);
-    ui.draggable.position({my: "center", at: "center", of: $this, using: function(pos) {
         $(this).animate(pos, 200, "linear");
       }
     });
     $("#pieceTwo").droppable("disable");
-    }
-    });
-    $("#boxThree").droppable({ accept: "#pieceThree", drop: function(event, ui) {
+  }
+  });
+    $("#boxTwo").droppable({accept: "#pieceThree", drop: function(event, ui) {
     var $this = $(this);
-    ui.draggable.position({ my: "center", at: "center", of: $this, using: function(pos) {
+    ui.draggable.position({my: "center", at: "center", of: $this, using: function(pos) {
         $(this).animate(pos, 200, "linear");
       }
     });
     $("#pieceThree").droppable("disable");
     }
     });
-    $("#boxFour").droppable({ accept: "#pieceFour", drop: function(event, ui) {
+    $("#boxThree").droppable({ accept: "#pieceFour", drop: function(event, ui) {
     var $this = $(this);
     ui.draggable.position({ my: "center", at: "center", of: $this, using: function(pos) {
         $(this).animate(pos, 200, "linear");
@@ -153,7 +145,7 @@ function videosAppear() {
     $("#pieceFour").droppable("disable");
     }
     });
-    $("#boxFive").droppable({ accept: "#pieceFive", drop: function(event, ui) {
+    $("#boxFour").droppable({ accept: "#pieceFive", drop: function(event, ui) {
     var $this = $(this);
     ui.draggable.position({ my: "center", at: "center", of: $this, using: function(pos) {
         $(this).animate(pos, 200, "linear");
@@ -162,22 +154,30 @@ function videosAppear() {
     $("#pieceFive").droppable("disable");
     }
     });
-    $("#boxSix").droppable({ accept: "#pieceSix", drop: function(event, ui) {
+    $("#boxFive").droppable({ accept: "#pieceSix", drop: function(event, ui) {
     var $this = $(this);
     ui.draggable.position({ my: "center", at: "center", of: $this, using: function(pos) {
         $(this).animate(pos, 200, "linear");
       }
     });
-    $( "#pieceSix" ).droppable("disable");
+    $("#pieceSix").droppable("disable");
+    }
+    });
+    $("#boxSix").droppable({ accept: "#pieceOne", drop: function(event, ui) {
+    var $this = $(this);
+    ui.draggable.position({ my: "center", at: "center", of: $this, using: function(pos) {
+        $(this).animate(pos, 200, "linear");
+      }
+    });
+    $( "#pieceOne" ).droppable("disable");
     }
     });
   }
 }
 // handleVideo()
 //
-// Checks whether this was the correct video (button) and
-// if so starts a new round
-// if not indicates it was incorrect
+// When player use annyang to say: "PLay [insert video name]", that specific video plays.
+// The player can use commands on the video player to pause the video.
 function handleVideo(name) {
   if (gameState === 3) {
     gameState = 4;
@@ -203,7 +203,8 @@ function handleVideo(name) {
 }
 // bookShelf()
 //
-//
+// When "Next..." button is clicked, book covers appears and they are linked
+// with the wrong story.
 function bookShelf(){
   if(gameState===3){
     gameState = 5;
@@ -258,19 +259,8 @@ function sayAgain() {
 //
 // Uses ResponsiveVoice to say the specified text backwards!
 function sayBackwards(text) {
-  // We create a reverse version of the name by:
-  // 1. using .split('') to split the string into an array with each character
-  // as a separate element.
-  // e.g. "bat" -> ['b','a','t']
-  // 2. using .reverse() on the resulting array to create a reverse version
-  // e.g. ['b','a','t'] -> ['t','a','b']
-  // 3. using .join('') on the resulting array to create a string version of the array
-  // with each element forming the string (joined together with nothing in between)
-  // e.g. ['t','a','b'] -> "tab"
-  // (We do this all in one line using "chaining" because .split() returns an array for
-  // for .reverse() to work on, and .reverse() returns an array for .join() to work on.)
+
   let backwardsText = text.split('').reverse().join('');
-  // Set some random numbers for the voice's pitch and rate parameters for a bit of fun
   let options = {
     pitch: 2,
     rate: 0.75
