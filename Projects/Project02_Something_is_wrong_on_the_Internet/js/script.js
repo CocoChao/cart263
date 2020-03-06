@@ -64,14 +64,16 @@ function setup() {
   $("#loading").hide();
   $("#bookShelf").hide();
   $(".books").hide();
+  $(".puzzleContainer").hide();
+  $(".pieces").hide();
   if (annyang) {
     annyang.addCommands(commands);
     annyang.start();
     // annyang.debug();
   }
   document.getElementById('wifiLogo').style.display = "block";
-  responsiveVoice.speak("Say 'Internet On' to make window load. Say 'Say it again' to repeat instructions. Say 'Play [Insert video title]' to play the video. Say 'Internet Off' to make everything stop.", 'UK English Male', {
-  pitch: 1, rate:1.5 });
+  responsiveVoice.speak("Instructions: Say 'Internet On' to make window load. Say 'Say it again' to repeat instructions. Say 'Play [Insert video title]' to play the video. Say 'Internet Off' to make everything stop.", 'UK English Male', {
+  pitch: 1.75, rate:1 });
 
 }
 // wifiOn()
@@ -88,6 +90,8 @@ function wifiOn() {
     $(".books").hide();
     $("#loading").on("click", videosAppear);
     $("#dialog").show();
+    $(".puzzleContainer").hide();
+    $(".pieces").hide();
   }
 }
 // videosAppear()
@@ -101,8 +105,110 @@ function videosAppear() {
     $("#loading").hide();
     $("#bookShelf").hide();
     $(".books").hide();
-    $("#bookShelf").show();
-    $("#bookShelf").on("click", bookShelf);
+    $("#bookShelf").show().resizable({
+      aspectRatio: 4 / 5
+    })
+    $(".puzzleContainer").show();
+    $(".pieces").show();
+
+    $(".puzzleContainer").show();
+    $(".pieces").show();
+    $("#pieceOne").draggable();
+    $("#pieceTwo").draggable();
+    $("#pieceThree").draggable();
+    $("#pieceFour").draggable();
+    $("#pieceFive").draggable();
+    $("#pieceSix").draggable();
+    $("#boxOne").droppable({
+      accept: "#pieceOne",
+      drop: function(event, ui) {
+    var $this = $(this);
+    ui.draggable.position({
+      my: "center",
+      at: "center",
+      of: $this,
+      using: function(pos) {
+        $(this).animate(pos, 200, "linear");
+      }
+    });
+    $( "#pieceOne" ).droppable("disable");
+  }
+  });
+    $("#boxTwo").droppable({
+      accept: "#pieceTwo",
+      drop: function(event, ui) {
+    var $this = $(this);
+    ui.draggable.position({
+      my: "center",
+      at: "center",
+      of: $this,
+      using: function(pos) {
+        $(this).animate(pos, 200, "linear");
+      }
+    });
+    $( "#pieceTwo" ).droppable("disable");
+    }
+    });
+    $("#boxThree").droppable({
+      accept: "#pieceThree",
+      drop: function(event, ui) {
+    var $this = $(this);
+    ui.draggable.position({
+      my: "center",
+      at: "center",
+      of: $this,
+      using: function(pos) {
+        $(this).animate(pos, 200, "linear");
+      }
+    });
+    $( "#pieceThree" ).droppable("disable");
+    }
+    });
+    $("#boxFour").droppable({
+      accept: "#pieceFour",
+      drop: function(event, ui) {
+    var $this = $(this);
+    ui.draggable.position({
+      my: "center",
+      at: "center",
+      of: $this,
+      using: function(pos) {
+        $(this).animate(pos, 200, "linear");
+      }
+    });
+    $( "#pieceFour" ).droppable("disable");
+    }
+    });
+    $("#boxFive").droppable({
+      accept: "#pieceFive",
+      drop: function(event, ui) {
+    var $this = $(this);
+    ui.draggable.position({
+      my: "center",
+      at: "center",
+      of: $this,
+      using: function(pos) {
+        $(this).animate(pos, 200, "linear");
+      }
+    });
+    $( "#pieceFive" ).droppable("disable");
+    }
+    });
+    $("#boxSix").droppable({
+      accept: "#pieceSix",
+      drop: function(event, ui) {
+    var $this = $(this);
+    ui.draggable.position({
+      my: "center",
+      at: "center",
+      of: $this,
+      using: function(pos) {
+        $(this).animate(pos, 200, "linear");
+      }
+    });
+    $( "#pieceSix" ).droppable("disable");
+    }
+    });
   }
 }
 // handleVideo()
@@ -116,7 +222,6 @@ function handleVideo(name) {
     $("#bookShelf").show();
     $("#loading").hide();
     $("#wifiLogo").hide();
-    // $("#bookShelf").on("click", bookShelf);
   }
   if (name === "coconut") {
     document.getElementById("coconut").play();
@@ -145,9 +250,6 @@ function bookShelf(){
     $("#bookShelf").show();
     $(".books").show();
   }
-  $( function() {
-    $( "#accordion" ).accordion();
-  } );
 }
 
 function handleBooks(name){
@@ -185,7 +287,7 @@ $(function() {
 });
 
 function sayAgain() {
-  sayBackwards("Say 'Turn Wifi On' to make window load. Say 'Say it again' to repeat instructions. Say 'Play [Insert video title]' to play the Youtube video. Say 'Read me [Insert story title]' to make the ResponsiveVoice read a story. Say 'Turn Wifi Off' to make everything stop.", 'UK English Male');
+  sayBackwards("Instructions: Say 'Turn Wifi On' to make window load. Say 'Say it again' to repeat instructions. Say 'Play [Insert video title]' to play the Youtube video. Say 'Turn Wifi Off' to make everything stop.", 'UK English Male');
 }
 
 // sayBackwards(text)
@@ -206,7 +308,7 @@ function sayBackwards(text) {
   let backwardsText = text.split('').reverse().join('');
   // Set some random numbers for the voice's pitch and rate parameters for a bit of fun
   let options = {
-    pitch: 1,
+    pitch: 2,
     rate: 0.75
   };
   // Use ResponsiveVoice to speak the string we generated, with UK English Male voice
