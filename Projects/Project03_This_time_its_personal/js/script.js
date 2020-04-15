@@ -1,3 +1,4 @@
+"use strict"
 /*
 
 This time it's personal
@@ -13,10 +14,7 @@ https://github.com/dariusk/corpora
 
 */
 
-// Elements in the login form using Local localStorage
-const inputKey = document.getElementById("inputKey");
-const inputValue = document.getElementById("inputValue");
-const insertButton = document.getElementById("insertButton");
+let pageState = 1; //main page is active
 
 $(document).ready(function() {
 
@@ -24,42 +22,43 @@ $(document).ready(function() {
     .done(gotData)
     .fail(dataError);
 
-});
-
 //
 //
-$("insertButton").onclick = function (){
-  const key= inputKey.value;
+// Elements in the login form using Local localStorage
+const inputKey = document.getElementById("inputKey");
+const inputValue = document.getElementById("inputValue");
+const insertButton = document.getElementById("insertButton");
+// When user clicks Login button, username and password is saved into localStorage
+insertButton.onclick = function(){
+  const key = inputKey.value;
   const value = inputValue.value;
 
   console.log(key);
   console.log(value);
-}
-
-
+// Set any username and any password into localStorage
+localStorage.setItem("username", key);
+localStorage.setItem("password", value);
 console.log(localStorage);
 
+};
+
+// gotData(data)
+//
+// Show encouraging words to the user and inspiring Oprah Winfrey quote on
+// the main page.
 function gotData(data) {
 
-  let condiment = getRandomElement(data.condiments);
-  let verb = 'is';
-  if (condiment.charAt(condiment.length - 1) === 's') {
-    verb = 'are';
-  }
-
-  let cat = getRandomElement(data.cats);
-
-  let room = getRandomElement(data.rooms);
-
-  let description = `${condiment} ${verb} like a ${cat} in a ${room}.`;
+  let subject = "You are a"
+  let encouraging_words = getRandomElement(data.encouraging_words);
+  let oprahQuotes = getRandomElement(data.oprahQuotes);
+  let description = `${subject} ${encouraging_words} person! ${oprahQuotes}`;
 
   $('body').append(description)
 }
-
 function dataError(request, text, error) {
   console.error(error);
 }
-
 function getRandomElement(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
+});
