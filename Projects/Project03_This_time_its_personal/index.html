@@ -13,6 +13,11 @@
   <!-- Including jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+  <!-- jQuery and jQuery UI -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
   <!-- Including rita -->
   <script src="js/libraries/rita.min.js" content="text/javascript"></script>
 
@@ -23,17 +28,45 @@
 
 <!-- The login form on the main page -->
 <body>
+  <div id="one">
   <h2 id="title"> Welcome Back! </h2>
+  <div id="background"></div>
   <div>
-    <img id="landscapeImage" src="assets/images/backgroundImage.jpg" alt="landscape photography">
-    </img>
-  <div>
-  <fieldset>
-    <legend> Login </legend>
-    <input id="inputKey" type="text" placeholder="Enter Username...">
-    <input id="inputValue" type="text" placeholder="Enter Password...">
-    <button type="button" id="insertButton"> Login </button>
-  </fieldset>
+    <fieldset class="login">
+      <legend> Login </legend>
+      <input id="inputKey" type="text" placeholder="Enter Username...">
+      <input id="inputValue" type="text" placeholder="Enter Password...">
+      <button type="button" id="insertButton"> Login </button>
+    </fieldset>
+  </div>
+</div>
+<!-- The 2nd page (pageState =2 ) -->
+  <div id="two">
+    <fieldset class="selectMenu">
+      <label for="speed">Select a speed</label>
+      <select name="speed" id="speed">
+        <option>Slower</option>
+        <option>Slow</option>
+        <option selected="selected">Medium</option>
+        <option>Fast</option>
+        <option>Faster</option>
+      </select>
+
+      <label for="files">Select a file</label>
+      <select name="files" id="files">
+        <optgroup label="Scripts">
+          <option value="jquery">jQuery.js</option>
+          <option value="jqueryui">ui.jQuery.js</option>
+        </optgroup>
+        <optgroup label="Other files">
+          <option value="somefile">Some unknown file</option>
+          <option value="someotherfile">Some other file with a very long option text</option>
+        </optgroup>
+      </select>
+
+
+    </fieldset>
+  </div>
 
 </body>
 

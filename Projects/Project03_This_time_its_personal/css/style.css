@@ -17,6 +17,31 @@ button{
   font-size: 20px;
   background-color: #8E9791;
 }
+#speed{
+  font-size:20px;
+}
+#files{
+  font-size:20px;
+}
 fieldset{
   background-color: #8CCDF7;
+  border:0;
+}
+label{
+  display: block;
+  margin: 30px 000;
+}
+.overflow{
+  height: 200px;
+}
+.selectMenu{
+  font-size: 30px;
+}
+#background{
+  background-size:cover;
+  height: 720px;
+  width: 1280px;
+  width:inherit;
+  background-repeat: no-repeat;
+  background-image: url('../assets/images/backgroundImage.jpg');
 }
