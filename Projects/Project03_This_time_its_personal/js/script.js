@@ -22,6 +22,7 @@ let now;
 let endTimer;
 let distance;
 
+
 $(document).ready(function() {
 
 // Hide the menu selection, timerCountdown and progress bar on the main page
@@ -100,38 +101,40 @@ $('#description').hide();
 // progress bar
 //
 // "Stress uninstalling..." (a reminder of the whole concept of this "page")
-$(function(){
-  var progressbar = $("#progressbar"),
-    progressLabel = $(".progress-labl");
+$( function() {
+  var progressbar = $( "#progressbar" ),
+    progressLabel = $( ".progress-label" );
 
   progressbar.progressbar({
     value: false,
-    change: function(){
-      progressLabel.text(progressbar.progressbar("value")+"%");
+    change: function() {
+      progressLabel.text( progressbar.progressbar( "value" ) + "% " + "Stress uninstalling" );
     },
-    complete: function(){
-      progressLabel.text("Complete!");
+    complete: function() {
+      progressLabel.text( "Completed!" );
     }
   });
-  function progress(){
-    var val = progressbar.progressbar("value")|| 0;
-    progressbar.progressbar("value", val +2);
-    if (val<99){
-      setTimeout(progress,80);
+
+  function progress() {
+    var val = progressbar.progressbar( "value" ) || 0;
+    progressbar.progressbar( "value", val + 1 );
+    if ( val < 99 ) {
+      setTimeout( progress, 80);
     }
   }
-  setTimeout(progress,2000);
-});
+  setTimeout( progress, 5000);
+} );
 
 // One productivity hour countdown
 // Timer countdown on Top of page 2.
+function timerCountdown(){
   if (start === false){
     // Get today's date and time
     now = new Date().getTime();
     endTimer = now + 3600000;
     start =true;
-    console.log(now);
-    console.log(endTimer);
+    // console.log(now);
+    // console.log(endTimer);
     }
     // Update the count down every 1 second
     let interval = setInterval(function() {
@@ -151,5 +154,60 @@ $(function(){
       document.getElementById("timerCountdown").innerHTML = "It's time for a break!";
     }
   });
+};
 
+//
+//All the elements from my To do List
+// Original code from: https://www.w3schools.com/howto/howto_js_todolist.asp
+// Create a "close" (x) button and append it to each To Do List item.
+var myTodoList = document.getElementsByTagName("LI");
+var i;
+  for (i=0;i<myTodoList.length; i++){
+    var span = document.createElement("SPAN");
+    // var txt = documentcreateTextNode("\u00D7");
+    //   span.className = "close";
+    //   span.appendChild(txt);
+    //   myTodoList[i].appendChild(span);
+    }
+// Click on a close (x) button to delete the current list item.
+var close = document.getElementsByClassName("close");
+var i;
+  for (i = 0; i < close.length; i++){
+    close[i].onclick = function(){
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+// Include a "checked" symbol when user clicks on list item
+var list = document.querySelector('ul');
+  list.addEventListener('click', function(ev){
+    if(ev.target.tagName === "LI"){
+      ev.target.classList.toggle('checked');
+    }
+  }, false);
+// Add new items to the list when user click on "Add" button
+// If nothing is in the input, add pop up alert.
+function newelement(){
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("todoListHeader").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue===''){
+    alert("You wrote nothing! :( ");
+} else {
+  document.getElementById("list").value="";
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+      }
+    }
+  }
+}
 });

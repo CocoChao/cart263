@@ -24,6 +24,9 @@
   <!-- We include our own script file(s) -->
   <script src="js/script.js" content="text/javascript"></script>
 
+  <!-- Dancing script google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+
 </head>
 
 <!-- The login form on the main page -->
@@ -43,9 +46,10 @@
 <!-- The 2nd page (pageState =2 ) -->
   <div id="two">
     <div> <p class="timertext" id="timerCountdown"></p> </div>
-    <div id="progressbar"><div class="progress-label">Stress uninstalling...</div></div>
+    <div id="progressbar"><div class="progress-label"></div></div>
+
     <fieldset class="selectMenu">
-      <label for="speed">Select a speed</label>
+      <label for="speed">  </label>
       <select name="speed" id="speed">
         <option>Slower</option>
         <option>Slow</option>
@@ -66,7 +70,19 @@
         </optgroup>
       </select>
     </fieldset>
+    <!-- to do list  -->
+    <div id="todoListHeader" class"header">
+      <h2> My To Do List </h2>
+      <input type:"text" id="todoListHeader" placeholder="Title...">
+      <span onclick="newElement()" class="addButton"> Add </span>
+    </div>
+    <ul id="list">
+      <li> Finish assignment 2 </li>
+      <li> Clean the house </li>
+      <li class="checked"> Organize my closet </li>
+    </ul>
   </div>
+
 
 </body>
 
