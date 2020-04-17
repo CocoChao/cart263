@@ -157,17 +157,17 @@ function timerCountdown(){
 };
 
 //
-//All the elements from my To do List
+// All the elements from my To do List
 // Original code from: https://www.w3schools.com/howto/howto_js_todolist.asp
 // Create a "close" (x) button and append it to each To Do List item.
 var myTodoList = document.getElementsByTagName("LI");
 var i;
   for (i=0;i<myTodoList.length; i++){
     var span = document.createElement("SPAN");
-    // var txt = documentcreateTextNode("\u00D7");
-    //   span.className = "close";
-    //   span.appendChild(txt);
-    //   myTodoList[i].appendChild(span);
+    var txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      myTodoList[i].appendChild(span);
     }
 // Click on a close (x) button to delete the current list item.
 var close = document.getElementsByClassName("close");
@@ -208,6 +208,6 @@ function newElement(){
       div.style.display = "none";
       }
     }
-  } console.log(newElement);
+  }
 }
 });

@@ -70,12 +70,6 @@ label{
   box-sizing: border-box;
 }
 
-/* Remove margins and padding from the list */
-ul {
-  margin: 0;
-  padding: 0;
-}
-
 /* Style the list items */
 ul li {
   cursor: pointer;
@@ -94,7 +88,7 @@ ul li {
 
 /* Set all odd list items to a different color (zebra-stripes) */
 ul li:nth-child(odd) {
-  background: #f9f9f9;
+  background: #D4C3B3;
 }
 
 /* Darker background-color on hover */
@@ -129,11 +123,6 @@ ul li.checked::before {
   right: 0;
   top: 0;
   padding: 12px 16px 12px 16px;
-}
-
-.close:hover {
-  background-color: #f44336;
-  color: white;
 }
 
 /* Style the header */
@@ -172,7 +161,6 @@ ul li.checked::before {
   transition: 0.3s;
   border-radius: 0;
 }
-
-.addBtn:hover {
+.addButton:hover {
   background-color: #bbb;
 }
