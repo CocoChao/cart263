@@ -15,6 +15,8 @@ https://github.com/dariusk/corpora
 */
 
 let pageState = 1; //main page is active
+
+// Declare viariables for the timerCountdown
 let start = false;
 let now;
 let endTimer;
@@ -22,6 +24,7 @@ let distance;
 
 $(document).ready(function() {
 
+// Hide the menu selection, timerCountdown and progress bar on the main page
 $('#two').hide();
 
   $.getJSON('data/data.json')
@@ -29,16 +32,15 @@ $('#two').hide();
     .fail(dataError);
 
 // Random Header Image in Javascript
-//
+// Everytime user refresh the page, a new landscape image appears
 let pictures = ['backgroundImage.jpg','backgroundImage2.jpg','backgroundImage3.jpg',
 'backgroundImage4.jpg','backgroundImage5.jpg'];
 $('#background').css({'background-image': 'url(../assets/images/'+pictures[Math.floor(Math.random()*pictures.length)]+ ')'});
-console.log(pictures);
-
+// console.log(pictures);
 
 // gotData(data)
 //
-// Show encouraging words to the user and inspiring Oprah Winfrey quote on
+// Show random encouraging words and a random inspiring Oprah Winfrey quote on
 // the main page.
 function gotData(data) {
 
@@ -46,7 +48,7 @@ function gotData(data) {
   // console.log(encouraging_word);
   let subject = "You are";
   let determinant = "a";
-  // Check if the last latter of the condiment is an 's'
+  // Check if the first letter of the encouraging word is an vowel
   if (encouraging_word.charAt(0) === 'a'|| encouraging_word.charAt(0) ==='e'
   ||encouraging_word.charAt(0) === 'o'||encouraging_word.charAt(0) ==='i'
   ||encouraging_word.charAt(0) ==='u'||encouraging_word.charAt(0) ==='u') {
@@ -67,9 +69,11 @@ function getRandomElement(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-//
+// Login Form
 //
 // Elements in the login form using Local localStorage
+// Username and password unique to every user. Username and password is set and stored
+// in local storage at the same time.
 const inputKey = document.getElementById("inputKey");
 const inputValue = document.getElementById("inputValue");
 const insertButton = document.getElementById("insertButton");
@@ -83,7 +87,8 @@ insertButton.onclick = function(){
 // Set any username and any password into localStorage.
 localStorage.setItem("username", key);
 localStorage.setItem("password", value);
-// When user click login, it brings it to a second page.
+// When user click login, there is a pop up.
+// User clicks "okay" and the second page appears.
 alert('You are loged in.');
 pageState = 2;
 $('#two').show();
@@ -92,6 +97,9 @@ $('#description').hide();
 // console.log(localStorage);
 };
 
+// progress bar
+//
+// "Stress uninstalling..." (a reminder of the whole concept of this "page")
 $(function(){
   var progressbar = $("#progressbar"),
     progressLabel = $(".progress-labl");
@@ -116,6 +124,7 @@ $(function(){
 });
 
 // One productivity hour countdown
+// Timer countdown on Top of page 2.
   if (start === false){
     // Get today's date and time
     now = new Date().getTime();
