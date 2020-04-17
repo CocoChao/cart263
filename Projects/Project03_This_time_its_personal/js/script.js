@@ -187,7 +187,7 @@ var list = document.querySelector('ul');
   }, false);
 // Add new items to the list when user click on "Add" button
 // If nothing is in the input, add pop up alert.
-function newelement(){
+function newElement(){
   var li = document.createElement("li");
   var inputValue = document.getElementById("todoListHeader").value;
   var t = document.createTextNode(inputValue);
@@ -208,6 +208,6 @@ function newelement(){
       div.style.display = "none";
       }
     }
-  }
+  } console.log(newElement);
 }
 });
