@@ -88,4 +88,53 @@ $('#description').hide();
 // console.log(localStorage);
 };
 
+$(function(){
+  var progressbar = $("#progressbar"),
+    progressLabel = $(".progress-labl");
+
+  progressbar.progressbar({
+    value: false,
+    change: function(){
+      progressLabel.text(progressbar.progressbar("value")+"%");
+    },
+    complete: function(){
+      progressLabel.text("Complete!");
+    }
+  });
+  function progress(){
+    var val = progressbar.progressbar("value")|| 0;
+    progressbar.progressbar("value", val +2);
+    if (val<99){
+      setTimeout(progress,80);
+    }
+  }
+  setTimeout(progress,2000);
+});
+// One productivity hour countdown
+  if (start === false){
+    // Get today's date and time
+    now = new Date().getTime();
+    endTimer = now + 3600000;
+    start =true;
+    // console.log(now);
+    // console.log(endTimer);
+    }
+    // Update the count down every 1 second
+    let interval = setInterval(function() {
+    // Get today's date and time
+     now = new Date().getTime();
+    // Find the distance between now and the count down time
+     let distance =  endTimer-now;
+     // console.log(distance);
+     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+     // console.log(minutes);
+    // Display the result in the element with id="timerCountdown"
+    document.getElementById("timerCountdown").innerHTML = minutes + "m " + seconds + "s ";
+    // If the count down is over, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("timerCountdown").innerHTML = "It's time for a break!";
+    }
+  });
 });

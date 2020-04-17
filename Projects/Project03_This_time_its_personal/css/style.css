@@ -45,3 +45,20 @@ label{
   background-repeat: no-repeat;
   background-image: url('../assets/images/backgroundImage.jpg');
 }
+.ui-progressbar {
+  position: relative;
+  margin: 40px;
+
+}
+.progress-label {
+  position: absolute;
+  left: 30%;
+  top: 20px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #fff;
+}
+.timertext{
+  font-size: 40px;
+  margin:auto;
+  text-align: center;
+}
