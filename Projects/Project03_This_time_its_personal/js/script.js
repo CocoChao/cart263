@@ -15,6 +15,10 @@ https://github.com/dariusk/corpora
 */
 
 let pageState = 1; //main page is active
+let start = false;
+let now;
+let endTimer;
+let distance;
 
 $(document).ready(function() {
 
@@ -110,14 +114,15 @@ $(function(){
   }
   setTimeout(progress,2000);
 });
+
 // One productivity hour countdown
   if (start === false){
     // Get today's date and time
     now = new Date().getTime();
     endTimer = now + 3600000;
     start =true;
-    // console.log(now);
-    // console.log(endTimer);
+    console.log(now);
+    console.log(endTimer);
     }
     // Update the count down every 1 second
     let interval = setInterval(function() {
@@ -137,4 +142,5 @@ $(function(){
       document.getElementById("timerCountdown").innerHTML = "It's time for a break!";
     }
   });
+
 });
