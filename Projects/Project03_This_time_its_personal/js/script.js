@@ -127,7 +127,6 @@ $( function() {
 
 // One productivity hour countdown
 // Timer countdown on Top of page 2.
-function timerCountdown(){
   if (start === false){
     // Get today's date and time
     now = new Date().getTime();
@@ -154,7 +153,6 @@ function timerCountdown(){
       document.getElementById("timerCountdown").innerHTML = "It's time for a break!";
     }
   });
-};
 
 //
 // All the elements from my To do List
