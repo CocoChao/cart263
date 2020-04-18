@@ -26,7 +26,6 @@ let distance;
 let e = 0,txt;
 txt = "Gratitude makes sense of our past, brings peace for today, and creates a vision for tomorrow. ~Melody Beattie";
 
-
 $(document).ready(function() {
 
 //Add button with the newElement()::
@@ -102,7 +101,7 @@ $('#two').show();
 $('#one').hide();
 $('#description').hide();
 typeWriter();
-// console.log(localStorage);
+countdown();
 };
 
 // progress bar
@@ -129,11 +128,12 @@ $( function() {
       setTimeout( progress, 80);
     }
   }
-  setTimeout( progress, 5000);
+  setTimeout( progress, 7000);
 } );
 
 // One productivity hour countdown
 // Timer countdown on Top of page 2.
+function countdown(){
   if (start === false){
     // Get today's date and time
     now = new Date().getTime();
@@ -160,7 +160,7 @@ $( function() {
       document.getElementById("timerCountdown").innerHTML = "It's time for a break!";
     }
   });
-
+}
 // All the elements from my To do List
 // Original code from: https://www.w3schools.com/howto/howto_js_todolist.asp
 let myTodoList = document.getElementsByTagName("LI");
@@ -206,4 +206,14 @@ function typeWriter(){
     setTimeout(typeWriter,100);
   }
 }
+// Add editable text at bottom of 2nd page.
+// If sentence is longer than gray box, return to second line
+function editableText(){
+  let e = document.getElementById("editable").contentEditable;
+  document.getElementById("message").innerHTML = e + " = The text is editable.";
+}
+// Add jQuery ToolTip widget to tell user that the text is editable
+  $(function(){
+    $(document).tooltip();
+  });
 });

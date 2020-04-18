@@ -166,3 +166,15 @@ ul li.checked::before {
   font-size: 40px;
   font-family: 'Dancing Script', cursive;
 }
+#thoughts{
+  background-color:#d1d1d1;
+  font-size: 30px;
+  text-decoration: underline;
+}
+#taskList{
+  background-color: #5a6D92;
+  margin: 20px;
+}
+title{
+  font-size: 20px;
+}

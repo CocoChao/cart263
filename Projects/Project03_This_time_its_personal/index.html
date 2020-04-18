@@ -47,11 +47,9 @@
   <div id="two">
     <div> <p class="timertext" id="timerCountdown"></p> </div>
     <div id="progressbar"><div class="progress-label"></div></div>
-<!-- Kept "speed" as "for" and "select" name. Modified the questions  -->
-<!-- Questions: https://tinybuddha.com/blog/50-questions-to-foster-gratitude-and-feel-good-about-life/ -->
+    <!-- Kept "speed" as "for" and "select" name. Modified the questions  -->
+    <!-- Questions: https://tinybuddha.com/blog/50-questions-to-foster-gratitude-and-feel-good-about-life/ -->
     <fieldset class="selectMenu">
-      <!-- <h2 id="quote">“Gratitude makes sense of our past, brings peace for today, and creates a vision for tomorrow.”
-        ~Melody Beattie </h2> -->
       <p id="txt"></p>
       <label for="speed"> Q1: Choose a positive question to think about today... </label>
       <select name="speed" id="speed">
@@ -62,8 +60,8 @@
         <option>What’s something you’re looking forward to in the future?</option>
         <option>How have you made personal or professional progress lately?</option>
       </select>
-<!-- Kept "files" as "for" and "select" name. Modified the questions  -->
-<!-- Ideas: https://www.1stpersonaldevelopment.com/self-improvement-ideas/ -->
+      <!-- Kept "files" as "for" and "select" name. Modified the questions  -->
+      <!-- Ideas: https://www.1stpersonaldevelopment.com/self-improvement-ideas/ -->
       <label for="files"> Q2: Choose a self-improvement idea. </label>
       <select name="files" id="files">
         <option>Start a new hobby.</option>
@@ -74,16 +72,22 @@
       </select>
     </fieldset>
     <!-- to do list  -->
-    <div id="todoListHeader" class"header">
-      <h2> My To Do List </h2>
-      <input type:"text" id="todoListInputField" placeholder="Title...">
-      <span id="addButton" class="addButton"> Add </span>
+    <div id="taskList">
+      <div id="todoListHeader" class"header">
+        <h2> My To Do List </h2>
+        <input type:"text" id="todoListInputField" placeholder="Title...">
+        <span id="addButton" class="addButton"> Add </span>
+      </div>
+      <ul id="list">
+        <li> Finish assignment 2 </li>
+        <li> Clean the house </li>
+        <li class="checked"> Organize my closet </li>
+      </ul>
     </div>
-    <ul id="list">
-      <li> Finish assignment 2 </li>
-      <li> Clean the house </li>
-      <li class="checked"> Organize my closet </li>
-    </ul>
+    <div id="thoughts" title="Type here...">
+      <p id="editable" contenteditable="true"> Write your thoughts here... <br> </p>
+      <p id="message"></p>
+    </div>
   </div>
 
 
