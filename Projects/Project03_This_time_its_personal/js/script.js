@@ -30,8 +30,10 @@ $(document).ready(function() {
 
 //Add button with the newElement()::
 $("#addButton").click(newElement);
+
 // Hide the menu selection, timerCountdown and progress bar on the main page
 $('#two').hide();
+$('#three').hide();
 
   $.getJSON('data/data.json')
     .done(gotData)
@@ -43,6 +45,12 @@ let pictures = ['backgroundImage.jpg','backgroundImage2.jpg','backgroundImage3.j
 'backgroundImage4.jpg','backgroundImage5.jpg'];
 $('#background').css({'background-image': 'url(../assets/images/'+pictures[Math.floor(Math.random()*pictures.length)]+ ')'});
 // console.log(pictures);
+
+// Random meme images on page 3, everytime when mouse is over the image
+let memes = ['memes1.jpg','memes2.png','memes3.jpg','memes4.png','memes5.jpg','memes5.jpg',
+'memes6.jpg','memes7.jpg','memes8.jpg','memes9.jpg','memes10.jpg','memes11.jpg'];
+$('memesAlbum').css({'background-image':'url(../assets/images/'+memes[Math.floor(Math.random()*memes.length)]+')'});
+// console.log(memes);
 
 // gotData(data)
 //
@@ -99,7 +107,9 @@ alert('You are loged in.');
 pageState = 2;
 $('#two').show();
 $('#one').hide();
+$('#three').hide();
 $('#description').hide();
+$("#entertainment").click(nextPage);
 typeWriter();
 countdown();
 };
@@ -216,4 +226,30 @@ function editableText(){
   $(function(){
     $(document).tooltip();
   });
+// Add link to "Distract me..." button
+  function nextPage(){
+    if(pageState =2){
+      pageState = 3;
+      $('#two').hide();
+      $('#one').hide();
+      }
+  }
+  function backPage(){
+    if(pageState = 3){
+      pageState = 2;
+      $('#one').hide();
+      $('#three').hide();
+      }
+  }
+  function getRandomMeme(){
+  let index = Math.floor(Math.random()*memes.length);
+  return memes[index];
+  console.log(getRandomMeme());
+  }
+  $("#memesAlbum").hover(
+    function(){
+      let meme = getRandomMeme();
+      $("#img").attr("src",meme);
+      console.log(meme);
+    });
 });
