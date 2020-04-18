@@ -22,9 +22,15 @@ let now;
 let endTimer;
 let distance;
 
+// Create a Typing Effect
+let e = 0,txt;
+txt = "Gratitude makes sense of our past, brings peace for today, and creates a vision for tomorrow. ~Melody Beattie";
+
 
 $(document).ready(function() {
 
+//Add button with the newElement()::
+$("#addButton").click(newElement);
 // Hide the menu selection, timerCountdown and progress bar on the main page
 $('#two').hide();
 
@@ -95,6 +101,7 @@ pageState = 2;
 $('#two').show();
 $('#one').hide();
 $('#description').hide();
+typeWriter();
 // console.log(localStorage);
 };
 
@@ -102,7 +109,7 @@ $('#description').hide();
 //
 // "Stress uninstalling..." (a reminder of the whole concept of this "page")
 $( function() {
-  var progressbar = $( "#progressbar" ),
+  let progressbar = $( "#progressbar" ),
     progressLabel = $( ".progress-label" );
 
   progressbar.progressbar({
@@ -116,7 +123,7 @@ $( function() {
   });
 
   function progress() {
-    var val = progressbar.progressbar( "value" ) || 0;
+    let val = progressbar.progressbar( "value" ) || 0;
     progressbar.progressbar( "value", val + 1 );
     if ( val < 99 ) {
       setTimeout( progress, 80);
@@ -142,8 +149,8 @@ $( function() {
     // Find the distance between now and the count down time
      let distance =  endTimer-now;
      // console.log(distance);
-     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
      // console.log(minutes);
     // Display the result in the element with id="timerCountdown"
     document.getElementById("timerCountdown").innerHTML = minutes + "m " + seconds + "s ";
@@ -154,58 +161,49 @@ $( function() {
     }
   });
 
-//
 // All the elements from my To do List
 // Original code from: https://www.w3schools.com/howto/howto_js_todolist.asp
-// Create a "close" (x) button and append it to each To Do List item.
-var myTodoList = document.getElementsByTagName("LI");
-var i;
+let myTodoList = document.getElementsByTagName("LI");
+let i;
   for (i=0;i<myTodoList.length; i++){
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-      span.className = "close";
-      span.appendChild(txt);
-      myTodoList[i].appendChild(span);
+    let span = document.createElement("SPAN");
     }
 // Click on a close (x) button to delete the current list item.
-var close = document.getElementsByClassName("close");
-var i;
+let close = document.getElementsByClassName("close");
   for (i = 0; i < close.length; i++){
     close[i].onclick = function(){
-      var div = this.parentElement;
+      let div = this.parentElement;
       div.style.display = "none";
     }
   }
 // Include a "checked" symbol when user clicks on list item
-var list = document.querySelector('ul');
+let list = document.querySelector('ul');
   list.addEventListener('click', function(ev){
     if(ev.target.tagName === "LI"){
       ev.target.classList.toggle('checked');
     }
   }, false);
+
 // Add new items to the list when user click on "Add" button
 // If nothing is in the input, add pop up alert.
 function newElement(){
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("todoListHeader").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
+  let inputValue = document.getElementById("todoListInputField").value;
+
   if (inputValue===''){
     alert("You wrote nothing! :( ");
 } else {
-  document.getElementById("list").value="";
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
-
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-      }
-    }
+  let li = document.createElement("li");
+  let t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  document.getElementById("list").append(li);
+  }
+}
+// Make the quote on page 2 appear with a typeWriter effect
+function typeWriter(){
+  if(e < txt.length){
+    document.getElementById("txt").innerHTML += txt.charAt(e);
+    e++;
+    setTimeout(typeWriter,100);
   }
 }
 });

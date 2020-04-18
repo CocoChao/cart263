@@ -47,34 +47,37 @@
   <div id="two">
     <div> <p class="timertext" id="timerCountdown"></p> </div>
     <div id="progressbar"><div class="progress-label"></div></div>
-
+<!-- Kept "speed" as "for" and "select" name. Modified the questions  -->
+<!-- Questions: https://tinybuddha.com/blog/50-questions-to-foster-gratitude-and-feel-good-about-life/ -->
     <fieldset class="selectMenu">
-      <label for="speed"> Q1: </label>
+      <!-- <h2 id="quote">“Gratitude makes sense of our past, brings peace for today, and creates a vision for tomorrow.”
+        ~Melody Beattie </h2> -->
+      <p id="txt"></p>
+      <label for="speed"> Q1: Choose a positive question to think about today... </label>
       <select name="speed" id="speed">
-        <option>Slower</option>
-        <option>Slow</option>
-        <option selected="selected">Medium</option>
-        <option>Fast</option>
-        <option>Faster</option>
+        <option>What’s the best thing that happened today so far?</option>
+        <option>What about today has been better than yesterday?</option>
+        <option selected="selected">What’s improved about your life from this time last year?</option>
+        <option>Who made a positive difference in your life recently?</option>
+        <option>What’s something you’re looking forward to in the future?</option>
+        <option>How have you made personal or professional progress lately?</option>
       </select>
-
-      <label for="files"> Q2: </label>
+<!-- Kept "files" as "for" and "select" name. Modified the questions  -->
+<!-- Ideas: https://www.1stpersonaldevelopment.com/self-improvement-ideas/ -->
+      <label for="files"> Q2: Choose a self-improvement idea. </label>
       <select name="files" id="files">
-        <optgroup label="Scripts">
-          <option value="jquery">jQuery.js</option>
-          <option value="jqueryui">ui.jQuery.js</option>
-        </optgroup>
-        <optgroup label="Other files">
-          <option value="somefile">Some unknown file</option>
-          <option value="someotherfile">Some other file with a very long option text</option>
-        </optgroup>
+        <option>Start a new hobby.</option>
+        <option>Keep a gratitude journal.</option>
+        <option>Take up meditation</option>
+        <option>Write a letter to or from your future self.</option>
+        <option>Tidy up your personal space.</option>
       </select>
     </fieldset>
     <!-- to do list  -->
     <div id="todoListHeader" class"header">
       <h2> My To Do List </h2>
-      <input type:"text" id="todoListHeader" placeholder="Title...">
-      <span onclick="newElement()" class="addButton"> Add </span>
+      <input type:"text" id="todoListInputField" placeholder="Title...">
+      <span id="addButton" class="addButton"> Add </span>
     </div>
     <ul id="list">
       <li> Finish assignment 2 </li>
