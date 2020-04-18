@@ -47,9 +47,11 @@ $('#background').css({'background-image': 'url(../assets/images/'+pictures[Math.
 // console.log(pictures);
 
 // Random meme images on page 3, everytime when mouse is over the image
-let memes = ['memes1.jpg','memes2.png','memes3.jpg','memes4.png','memes5.jpg','memes5.jpg',
-'memes6.jpg','memes7.jpg','memes8.jpg','memes9.jpg','memes10.jpg','memes11.jpg'];
-$('memesAlbum').css({'background-image':'url(../assets/images/'+memes[Math.floor(Math.random()*memes.length)]+')'});
+let memes = ['assets/images/memes1.jpg','assets/images/memes2.png','assets/images/memes3.jpg',
+'assets/images/memes4.png','assets/images/memes5.jpg','assets/images/memes5.jpg',
+'assets/images/memes6.jpg','assets/images/memes7.jpg','assets/images/memes8.jpg','assets/images/memes9.jpg',
+'assets/images/memes10.jpg','assets/images/memes11.jpg'];
+// $('memesAlbum').css({'background-image':'url(../assets/images/'+memes[index]+')'});
 // console.log(memes);
 
 // gotData(data)
@@ -135,7 +137,7 @@ $( function() {
     let val = progressbar.progressbar( "value" ) || 0;
     progressbar.progressbar( "value", val + 1 );
     if ( val < 99 ) {
-      setTimeout( progress, 80);
+      setTimeout( progress, 50000);
     }
   }
   setTimeout( progress, 7000);
@@ -232,24 +234,26 @@ function editableText(){
       pageState = 3;
       $('#two').hide();
       $('#one').hide();
+      $('#three').show();
       }
   }
-  function backPage(){
-    if(pageState = 3){
-      pageState = 2;
-      $('#one').hide();
-      $('#three').hide();
-      }
-  }
+  // Show random memes when mouse is over image (hover)
   function getRandomMeme(){
   let index = Math.floor(Math.random()*memes.length);
   return memes[index];
-  console.log(getRandomMeme());
   }
   $("#memesAlbum").hover(
     function(){
       let meme = getRandomMeme();
       $("#img").attr("src",meme);
-      console.log(meme);
     });
+  // Add back button to return to page 2
+    backButton.onclick = function(){
+      if (pageState = 3){
+      pageState = 2;
+      $('#one').hide();
+      $('#two').show();
+      $('#three').hide();
+    }
+    }
 });

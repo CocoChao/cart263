@@ -178,3 +178,6 @@ ul li.checked::before {
 title{
   font-size: 20px;
 }
+#entertainment{
+  float:right;
+}
