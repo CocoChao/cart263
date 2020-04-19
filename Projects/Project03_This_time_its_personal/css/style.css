@@ -41,7 +41,7 @@ label{
   width: 1280px;
   width:inherit;
   background-repeat: no-repeat;
-  background-image: url('/assets/images/backgroundImage.jpg');
+  background-image: url('assets/images/backgroundImage.jpg');
 }
 .ui-progressbar {
   position: relative;

@@ -44,7 +44,7 @@ $('#four').hide();
 // Everytime user refresh the page, a new landscape image appears
 let pictures = ['backgroundImage.jpg','backgroundImage2.jpg','backgroundImage3.jpg',
 'backgroundImage4.jpg','backgroundImage5.jpg'];
-$('#background').css({'background-image': 'url(/assets/images/'+pictures[Math.floor(Math.random()*pictures.length)]+ ')'});
+$('#background').css({'background-image': 'url(assets/images/'+pictures[Math.floor(Math.random()*pictures.length)]+ ')'});
 // console.log(pictures);
 
 // Random meme images on page 3, everytime when mouse is over the image
