@@ -256,4 +256,8 @@ function editableText(){
       $('#three').hide();
     }
     }
+  // Add checkboxradio widget to create a quiz
+  $( function() {
+  $( "check" ).checkboxradio();
+} );
 });

@@ -181,3 +181,10 @@ title{
 #entertainment{
   float:right;
 }
+h1, h2{
+  font-size: 40px;
+}
+#labelTwo{
+  display: block;
+  margin: 0;
+}
