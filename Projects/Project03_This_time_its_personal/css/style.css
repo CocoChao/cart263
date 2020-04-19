@@ -192,3 +192,10 @@ h1, h2{
 .widget{
   background-color: #d1d1d1;
 }
+.ui-menu{
+  width: 250px;
+  float:left;
+}
+.ui-widget-header{
+  padding: 0.2em;
+}

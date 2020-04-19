@@ -228,9 +228,9 @@ function editableText(){
   $(function(){
     $(document).tooltip();
   });
-// Add link to "Distract me..." button
+// Add link next page to "next" button
   function nextPage(){
-    if(pageState =2){
+    if(pageState = 2){
       pageState = 3;
       $('#two').hide();
       $('#one').hide();
@@ -254,10 +254,16 @@ function editableText(){
       $('#one').hide();
       $('#two').show();
       $('#three').hide();
-    }
+      }
     }
   // Add checkboxradio widget to create a quiz
   $( function() {
   $( "check" ).checkboxradio();
+  });
+  // Add menu widget to display the 3 different pages
+  $( function() {
+  $( "#menu" ).menu({
+    items: "> :not(.ui-widget-header)"
+  });
 } );
 });
