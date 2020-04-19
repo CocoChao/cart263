@@ -51,8 +51,7 @@ $('#background').css({'background-image': 'url(../assets/images/'+pictures[Math.
 let memes = ['assets/images/memes1.jpg','assets/images/memes2.png','assets/images/memes3.jpg',
 'assets/images/memes4.png','assets/images/memes5.jpg','assets/images/memes5.jpg',
 'assets/images/memes6.jpg','assets/images/memes7.jpg','assets/images/memes8.jpg','assets/images/memes9.jpg',
-'assets/images/memes10.jpg','assets/images/memes11.jpg'];
-// $('memesAlbum').css({'background-image':'url(../assets/images/'+memes[index]+')'});
+'assets/images/memes10.jpg','assets/images/memes11.jpg','assets/images/memes12.png'];
 // console.log(memes);
 
 // gotData(data)
@@ -145,7 +144,7 @@ $( function() {
   setTimeout( progress, 7000);
 } );
 
-// One productivity hour countdown
+// One productive hour countdown
 // Timer countdown on Top of page 2.
 function countdown(){
   if (start === false){
@@ -175,8 +174,25 @@ function countdown(){
     }
   });
 }
+// Insert a dialog (reminder) button to explain the 2nd page's purpose
+  $( function() {
+    $( "#dialog" ).dialog({
+      autoOpen: false,
+      show: {
+        effect: "blind",
+        duration: 5000
+      },
+      hide: {
+        effect: "explode",
+        duration: 5000
+      }
+    });
+
+  $( "#opener" ).on( "click", function() {
+    $( "#dialog" ).dialog( "open" );
+  });
+} );
 // All the elements from my To do List
-// Original code from: https://www.w3schools.com/howto/howto_js_todolist.asp
 let myTodoList = document.getElementsByTagName("LI");
 let i;
   for (i=0;i<myTodoList.length; i++){
@@ -260,7 +276,7 @@ function editableText(){
       $('#four').hide();
       }
     }
-    // Add back button to return from page 4 to page 3
+    // Add next button to return from page 4 to page 3
       nextButtonTwo.onclick = function(){
         if (pageState = 3){
         pageState = 4;
@@ -270,6 +286,16 @@ function editableText(){
         $('#four').show();
         }
       }
+      // Add back button to return from page 3 to page 2
+        backButtonTwo.onclick = function(){
+          if (pageState = 4){
+          pageState = 3;
+          $('#one').hide();
+          $('#two').hide();
+          $('#three').show();
+          $('#four').hide();
+          }
+        }
   // Add checkboxradio widget to create a quiz
   $( function() {
   $( "check" ).checkboxradio();
