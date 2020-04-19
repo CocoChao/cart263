@@ -209,3 +209,11 @@ h1, h2{
 title{
   font-size;
 }
+#memesAlbum{
+  width:1200px;
+  height:1000px;
+}
+#nextButtonTwo{
+  float: right;
+  margin-right: 20px;
+}
