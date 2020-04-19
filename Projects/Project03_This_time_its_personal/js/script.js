@@ -73,7 +73,7 @@ function gotData(data) {
   }
   let encouraging_words = getRandomElement(data.encouraging_words);
   let oprahQuotes = getRandomElement(data.oprahQuotes);
-  let description = `${subject} ${determinant} ${encouraging_word} person! ${oprahQuotes}`;
+  let description = `"${subject} ${determinant} ${encouraging_word} person! ${oprahQuotes}"`;
 
   $('body').append("<p id ='description'>"+description +"</p>");
 
