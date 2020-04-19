@@ -187,4 +187,8 @@ h1, h2{
 #labelTwo{
   display: block;
   margin: 0;
+  font-size: 25px;
+}
+.widget{
+  background-color: #d1d1d1;
 }
