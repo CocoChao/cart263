@@ -34,6 +34,7 @@ $("#addButton").click(newElement);
 // Hide the menu selection, timerCountdown and progress bar on the main page
 $('#two').hide();
 $('#three').hide();
+$('#four').hide();
 
   $.getJSON('data/data.json')
     .done(gotData)
@@ -110,6 +111,7 @@ pageState = 2;
 $('#two').show();
 $('#one').hide();
 $('#three').hide();
+$('#four').hide();
 $('#description').hide();
 $("#entertainment").click(nextPage);
 typeWriter();
@@ -235,6 +237,7 @@ function editableText(){
       $('#two').hide();
       $('#one').hide();
       $('#three').show();
+      $('#four').hide();
       }
   }
   // Show random memes when mouse is over image (hover)
@@ -247,15 +250,26 @@ function editableText(){
       let meme = getRandomMeme();
       $("#img").attr("src",meme);
     });
-  // Add back button to return to page 2
+  // Add back button to return from page 3 to page 2
     backButton.onclick = function(){
       if (pageState = 3){
       pageState = 2;
       $('#one').hide();
       $('#two').show();
       $('#three').hide();
+      $('#four').hide();
       }
     }
+    // Add back button to return from page 4 to page 3
+      nextButtonTwo.onclick = function(){
+        if (pageState = 3){
+        pageState = 4;
+        $('#one').hide();
+        $('#two').hide();
+        $('#three').hide();
+        $('#four').show();
+        }
+      }
   // Add checkboxradio widget to create a quiz
   $( function() {
   $( "check" ).checkboxradio();
