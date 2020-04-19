@@ -192,27 +192,6 @@ function countdown(){
     $( "#dialog" ).dialog( "open" );
   });
 } );
-// All the elements from my To do List
-let myTodoList = document.getElementsByTagName("LI");
-let i;
-  for (i=0;i<myTodoList.length; i++){
-    let span = document.createElement("SPAN");
-    }
-// Click on a close (x) button to delete the current list item.
-let close = document.getElementsByClassName("close");
-  for (i = 0; i < close.length; i++){
-    close[i].onclick = function(){
-      let div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
-// Include a "checked" symbol when user clicks on list item
-let list = document.querySelector('ul');
-  list.addEventListener('click', function(ev){
-    if(ev.target.tagName === "LI"){
-      ev.target.classList.toggle('checked');
-    }
-  }, false);
 
 // Add new items to the list when user click on "Add" button
 // If nothing is in the input, add pop up alert.
@@ -225,6 +204,18 @@ function newElement(){
   let li = document.createElement("li");
   let t = document.createTextNode(inputValue);
   li.appendChild(t);
+
+// Add the close button
+  let span = document.createElement("SPAN");
+  span.className = "close";
+  span.innerHTML = "x";
+
+// Add the click for close button
+  span.onclick = function(){
+    let div = this.parentElement;
+    div.style.display = "none";
+  }
+  li.appendChild(span);
   document.getElementById("list").append(li);
   }
 }
@@ -254,8 +245,36 @@ function editableText(){
       $('#one').hide();
       $('#three').show();
       $('#four').hide();
+      setupList();
       }
   }
+
+  function setupList(){
+    // All the elements from my To do List
+    let myTodoList = document.getElementsByClassName("todo-li");
+    let i;
+      for (i=0;i<myTodoList.length; i++){
+        let span = document.createElement("SPAN");
+        span.className = "close";
+        span.innerHTML = "x";
+        myTodoList[i].appendChild(span);
+      }
+    // Click on a close (x) button to delete the current list item.
+      let close = document.getElementsByClassName("close");
+      for (i = 0; i < close.length; i++){
+        close[i].onclick = function(){
+          let div = this.parentElement;
+          div.style.display = "none";
+        }
+      }
+    // Include a "checked" symbol when user clicks on list item
+      let list = document.getElementById("list");
+      list.addEventListener('click', function(ev){
+        if(ev.target.tagName === "LI"){
+          ev.target.classList.toggle('checked');
+        }
+      }, false);
+    }
   // Show random memes when mouse is over image (hover)
   function getRandomMeme(){
   let index = Math.floor(Math.random()*memes.length);
