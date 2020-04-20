@@ -4,8 +4,8 @@
 This time it's personal
 Carole Chao
 
-Chooses random words from local JSON data to fill out a sentence
-describing a condiment based on cats and rooms... weird.
+My website is a mix of a journal and agenda at the same time, a place to write down
+your thoughts, plan your day, and/or a page to enjoy and entertain themselves.
 
 Uses:
 
@@ -22,7 +22,7 @@ let now;
 let endTimer;
 let distance;
 
-// Create a Typing Effect
+// Create a Typing Effect for the quote on pageState = 2
 let e = 0,txt;
 txt = "Gratitude makes sense of our past, brings peace for today, and creates a vision for tomorrow. ~Melody Beattie";
 
@@ -31,7 +31,7 @@ $(document).ready(function() {
 //Add button with the newElement()::
 $("#addButton").click(newElement);
 
-// Hide the menu selection, timerCountdown and progress bar on the main page
+// Hide elements from 2nd, 3rd and 4th page
 $('#two').hide();
 $('#three').hide();
 $('#four').hide();
@@ -40,12 +40,12 @@ $('#four').hide();
     .done(gotData)
     .fail(dataError);
 
-// Random Header Image in Javascript
+// Random Header Landscape Image on main page
 // Everytime user refresh the page, a new landscape image appears
 let pictures = ['backgroundImage.jpg','backgroundImage2.jpg','backgroundImage3.jpg',
 'backgroundImage4.jpg','backgroundImage5.jpg'];
 $('#background').css({'background-image': 'url(assets/images/'+pictures[Math.floor(Math.random()*pictures.length)]+ ')'});
-// console.log(pictures);
+
 
 // Random meme images on page 3, everytime when mouse is over the image
 let memes = ['assets/images/memes1.jpg','assets/images/memes2.png','assets/images/memes3.jpg',
@@ -98,8 +98,6 @@ insertButton.onclick = function(){
   const key = inputKey.value;
   const value = inputValue.value;
 
-  // console.log(key);
-  // console.log(value);
 // Set any username and any password into localStorage.
 localStorage.setItem("username", key);
 localStorage.setItem("password", value);
@@ -133,7 +131,7 @@ $( function() {
       progressLabel.text( "Completed!" );
     }
   });
-
+// Progress bar takes 10000 millis to complete
   function progress() {
     let val = progressbar.progressbar( "value" ) || 0;
     progressbar.progressbar( "value", val + 1 );
@@ -144,7 +142,7 @@ $( function() {
   setTimeout( progress, 7000);
 } );
 
-// One productive hour countdown
+// One productive hour (60 mins) countdown
 // Timer countdown on Top of page 2.
 function countdown(){
   if (start === false){
@@ -152,8 +150,6 @@ function countdown(){
     now = new Date().getTime();
     endTimer = now + 3600000;
     start =true;
-    // console.log(now);
-    // console.log(endTimer);
     }
     // Update the count down every 1 second
     let interval = setInterval(function() {
@@ -164,7 +160,6 @@ function countdown(){
      // console.log(distance);
      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-     // console.log(minutes);
     // Display the result in the element with id="timerCountdown"
     document.getElementById("timerCountdown").innerHTML = minutes + "m " + seconds + "s ";
     // If the count down is over, write some text
