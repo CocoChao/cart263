@@ -138,7 +138,7 @@ $( function() {
     let val = progressbar.progressbar( "value" ) || 0;
     progressbar.progressbar( "value", val + 1 );
     if ( val < 99 ) {
-      setTimeout( progress, 50000);
+      setTimeout( progress, 10000);
     }
   }
   setTimeout( progress, 7000);
